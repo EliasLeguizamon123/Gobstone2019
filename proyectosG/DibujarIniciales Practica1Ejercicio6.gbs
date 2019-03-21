@@ -1,0 +1,50 @@
+program{
+    /* Proposito:Dibujar las iniciales de mi nombre en el tablero
+       Precondiciòn: Un tablero de al menos 7x4, el cabezal debe volver al inicio
+    */
+    DibujarEVerde()
+    DibujarLRoja()
+    VolverAlInicio()
+}
+
+procedure DibujarEVerde(){
+    Mover(Norte);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Norte);
+    Mover(Oeste);
+    Poner(Verde);
+    Mover(Oeste);
+    Poner(Verde);
+    Mover(Norte);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Sur);
+    Mover(Sur);
+    Mover(Este);
+    Mover(Este);
+    
+}
+procedure DibujarLRoja(){
+    Poner(Rojo);
+    Mover(Norte);
+    Poner(Rojo);
+    Mover(Norte);
+    Poner(Rojo);
+    Mover(Sur);
+    Mover(Sur);
+    Mover(Este);
+    Poner(Rojo);
+    Mover(Este);
+    Poner(Rojo)
+}
+procedure VolverAlInicio(){
+    IrAlBorde(Oeste);
+    IrAlBorde(Sur);
+}

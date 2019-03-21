@@ -1,0 +1,14 @@
+program{
+    /* Proposito: Dibujar un "Arcoiris" de 4 celdas hacia el este
+       Precondiciòn: Al menos deben existir 3 celdas lindantes al este*/
+    ArcoirisAlEste();
+}
+procedure ArcoirisAlEste(){
+    Poner(Azul);
+    Mover(Este);
+    Poner(Rojo);
+    Mover(Este);
+    Poner(Negro);
+    Mover(Este);
+    Poner(Verde);
+}

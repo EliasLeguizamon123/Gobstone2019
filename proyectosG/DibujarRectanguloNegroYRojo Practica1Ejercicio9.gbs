@@ -1,0 +1,84 @@
+program{
+    DibujarLineaRojaYNegraDe5()
+    DibujarLineaRojaYNegraHorizontalDeTres()
+    DibujarLineaRojaYNegraDe5()
+    IrAlBorde(Este);
+    IrAlBorde(Sur);
+    DibujarLineaRojaYNegraHorizontalDeTres()
+    VolverAlInicio()
+}
+
+procedure DibujarRectanguloRojoYNegrode5x3(){
+    /*PROPÓSITO: poner un rectángulo de 5 celdas de ancho y 3 celda de
+      alto, en la que cada celda tenga una bolita roja y una negra; el cabezal
+      debe quedar en la celda inicial, que debe ser la esquina inferior izquierda
+      del rectángulo.
+      
+      PRECONDICIONES: hay al menos 4 celdas al Este y 2 celdas al Norte
+      de la celda actual.
+    */
+    
+}
+procedure DibujarLineaRojaYNegraHorizontalDeTres(){
+    /* Proposito: Dibuja una linea Horizontal de tres Roja y Negra hacia 
+       el norte
+       Precondicion:Al menos 3 celdas hacia el norte
+    */
+    Mover(Norte);
+    PonerUnaRojaYUnaNegra()
+    Mover(Norte);
+    //PonerUnaRojaYUnaNegra()
+    //MoverTresAlSur()
+    
+}
+procedure DibujarLineaRojaYNegraDe5(){
+    /* Proposito: Dibujar una linea de 5 celdas de largo hacia el este de color
+       Rojo y Negro.
+       Precondicion: Deben existir al menos 5 celdas lindantes al este, el cabezal
+       debe regresar a la celda de origen.
+        
+    */
+    PonerUnaRojaYUnaNegra()
+    Mover(Este);
+    PonerUnaRojaYUnaNegra()
+    Mover(Este);
+    PonerUnaRojaYUnaNegra()
+    Mover(Este);
+    PonerUnaRojaYUnaNegra()
+    Mover(Este);
+    PonerUnaRojaYUnaNegra()
+    MoverCuatroAlOeste()
+}
+procedure MoverCuatroAlOeste(){
+    /* Proposito: Mueve El cabezal 4 celdas al oeste
+        Precondicion: Debe haber al menos 4 celdas al oeste.
+    */
+    Mover(Oeste);
+    Mover(Oeste);
+    Mover(Oeste);
+    Mover(Oeste);
+    
+}
+procedure MoverDosAlSur(){
+    /* Proposito: Se mueve 2 celdas al sur
+       Precondicion: debe haber al menos 2 celdas al sur
+    */
+    Mover(Sur);
+    Mover(Sur);
+}
+procedure PonerUnaRojaYUnaNegra(){
+    /* Proposito: Pone 2 bolitas en la celda actual, una roja y una negra
+        Precondicion: ninguna
+    */
+    Poner(Rojo);
+    Poner(Negro);
+    
+}
+procedure VolverAlInicio(){
+    /* Proposito: Se va Hasta la esquina inferior izquierda
+       Precondicion: debe haber al menos 1 celda a la izquierda y una abajo.
+    */
+    IrAlBorde(Oeste);
+    IrAlBorde(Sur);
+    
+}

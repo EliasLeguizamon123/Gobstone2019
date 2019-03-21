@@ -1,4 +1,8 @@
 program{
+    /* Proposito: "Dibujar" un cuadrado 3x3 de color verde
+       Precondiciòn: El tablero debe ser de al menos 3x3
+       
+    */
     CuadroDeTresVerdes();
 }
 
