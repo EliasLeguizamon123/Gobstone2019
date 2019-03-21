@@ -1,0 +1,21 @@
+program{
+    CuadroDeTresVerdes();
+}
+
+procedure CuadroDeTresVerdes(){
+    Poner(Verde);
+    Mover(Norte);
+    Poner(Verde);
+    Mover(Norte);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Este);
+    Poner(Verde);
+    Mover(Sur);
+    Poner(Verde);
+    Mover(Sur);
+    Poner(Verde);
+    Mover(Oeste);
+    Poner(Verde);
+}
