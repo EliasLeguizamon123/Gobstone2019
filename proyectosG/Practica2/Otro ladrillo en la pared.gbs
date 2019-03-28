@@ -1,0 +1,123 @@
+program{
+    PonerPared()
+    
+}
+procedure PonerPared(){
+    /*
+        Proposito: Poner una pared de ladrillos, los cuales estan pegados entre si con 
+                   cemento, las celdas se separan en 2 hileras de ladrillos (superior 
+                   o inferior)
+        Observacion: La pared es de 8 ladrillos de alto x 4 de ancho, las hileras se
+                     alternal entre hileras de 4 ladrillos enteros (inferior) y una con 3
+                     ladrillos enteros y 2 medios ladrillos (Superior)
+        Precondicion: El espacio donde se va a poner la pared debe estar vacio, la pared 
+                      debe ser de 8 hileras de ladrillos de alto, y debe tener 4 
+                      ladrillos de ancho, el cabezal debe volver al inicio.
+    */
+    PonerHileraDeLadrillosInferior()
+    PonerHileraDeLadrillosSuperior()
+    SiguienteFilaDeLadrillos()
+    PonerHileraDeLadrillosInferior()
+    PonerHileraDeLadrillosSuperior()
+    SiguienteFilaDeLadrillos()
+    PonerHileraDeLadrillosInferior()
+    PonerHileraDeLadrillosSuperior()
+    SiguienteFilaDeLadrillos()
+    PonerHileraDeLadrillosInferior()
+    PonerHileraDeLadrillosSuperior()
+    
+    
+    
+}
+procedure PonerHileraDeLadrillosInferior(){
+    /*
+    Proposito: Pone una hilera de ladrillos inferiores y vuelve al primer ladrillo puesto
+               para colocar la hilera superior.
+    Observacion: Antes de poner un ladrillo debo poner cemento en la celda actual.
+    Precondicion: La celda actual y las lindantes al este deben estar vacias, el cabezal
+                  Debe regresar a la celda de origen.
+    */
+    PonerCemento();
+    PonerLadrillo();
+    PonerCemento()
+    MoverAlSiguienteLadrillo();
+    PonerCemento();
+    PonerLadrillo();
+    PonerCemento()
+    MoverAlSiguienteLadrillo();
+    PonerCemento();
+    PonerLadrillo();
+    PonerCemento()
+    MoverAlSiguienteLadrillo();
+    PonerCemento();
+    PonerLadrillo();
+    PonerCemento();
+    VolverAlPrimerLadrilloPuestoEnLaHilera()
+}
+procedure MoverAlSiguienteLadrillo(){
+    /*
+    Proposito: Mover Mi cabezal al espacio donde voy a colocar el siguiente ladrillo.
+    Observacion: Me muevo hacia el este 1 celda.
+    Precondicion: Debe haber al menos 3 celdas al este.
+    */
+    Mover(Este);
+}
+procedure VolverAlPrimerLadrilloPuestoEnLaHilera(){
+    /*
+    Proposito: Llevar el cabezal al primer ladrillo que coloque en la Hilera
+    Observacion: Me muevo al borde oeste ya que voy poniendo la pared de izquierda a derecha.
+    Precondicion: Debi haber puesto N ladrillos en las celdas lindantes al oeste de la celda
+                  Actual.
+    */
+    IrAlBorde(Oeste);
+}
+procedure PonerHileraDeLadrillosSuperior(){
+    /*
+    Proposito: Poner la Hilera Superior de ladrillos en la celda actual, comenzando con
+               Medio ladrillo y terminando con medio ladrillo.
+    Observacion: Primero debe habo poner medios ladrillos izquierdos.
+    Precondicion: Debe haber una hilera inferior completada, el cabezal 
+                  debe estar en el borde Oeste.
+    */
+    //PonerCemento();
+    PonerMedioLadrilloEnElBordeIzquierdo();
+    MoverAlSiguienteLadrillo();
+    PonerLadrillo();
+    MoverAlSiguienteLadrillo();
+    PonerLadrillo();
+    MoverAlSiguienteLadrillo();
+    PonerLadrillo();
+    PonerMedioLadrilloEnElBordeDerecho();
+    VolverAlPrimerLadrilloPuestoEnLaHilera();
+    
+}
+procedure SiguienteFilaDeLadrillos(){
+    /**/
+    Mover(Norte);
+}
+/*procedure PongoCemento(){
+    PonerCemento()
+    MoverAlSiguienteLadrillo()
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

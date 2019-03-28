@@ -1,0 +1,243 @@
+program{
+   RegistrarElDíaDeLaMemoria()
+}
+procedure RegistrarElDíaDeLaMemoria(){
+    /*Proposito: Utilizando Gobstone como un calendario, voy a registrar
+                 El dìa de la memoria, utilizando bolitas azules para el dia,
+                 Bolitas rojas en la celda lindante al este para registrar el
+                 Mes y bolitas verdes para registrar el año, el cabezal debe volver
+                 al inicio.
+      Precondicion: Debe haber como minimo 2 celdas lindantes al este de la celda
+      actual, las celdas deben estar vacias.
+    */
+    RegistrarElDia();
+    RegistrarElMes();
+    RegistrarElAño();
+}
+procedure RegistrarElDia(){
+    /*Proposito: Registrar el dia de la memoria (24) con bolitas de color azul y muevo
+                 el cabezal al este
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Acumulo10BolitasAzules()
+    Acumulo10BolitasAzules()
+    Poner(Azul); Poner(Azul);
+    Poner(Azul); Poner(Azul);
+    Mover(Este);
+}
+procedure RegistrarElMes(){
+    /*Proposito: Registra el mes en donde ocurrio el dia de la memoria (3) con bolitas de
+                 color rojo y muevo el cabezal al este.
+      Precondicion: La celda actual debe estar vacia.
+    */
+    Poner(Rojo); Poner(Rojo);
+    Poner(Rojo);
+    Mover(Este);
+}
+procedure RegistrarElAño(){
+    /*Proposito: Registra el año donde ocurrio el dia de la memoria (1976) con bolitas de
+                 color verde y muevo el cabezal al este
+      Precondicion: La celda actual debe estar vacia.
+    */
+    Acumulo700BolitasVerdes(); Acumulo700BolitasVerdes();// 1900
+    Acumulo500BolitasVerdes();
+    
+    Acumulo40BolitasVerdes(); Acumulo30BolitasVerdes(); //1970
+    
+    Acumulo5BolitasVerdes(); Poner(Verde); //1976
+}
+
+procedure Acumulo5BolitasAzules(){
+    /*Proposito: Poner 5 cantidad de bolitas Azules
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+}
+procedure Acumulo10BolitasAzules(){
+    /*Proposito: Poner 10 cantidad de bolitas Azules
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+    Poner(Azul);
+}
+procedure Acumulo500BolitasVerdes(){
+    /*Proposito: Poner 600 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Acumulo100BolitasVerdes(); Acumulo100BolitasVerdes();
+    Acumulo100BolitasVerdes(); Acumulo100BolitasVerdes();
+    Acumulo100BolitasVerdes();
+    
+}
+procedure Acumulo700BolitasVerdes(){
+    /*Proposito: Poner 700 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Acumulo100BolitasVerdes(); Acumulo100BolitasVerdes();
+    Acumulo100BolitasVerdes(); Acumulo100BolitasVerdes();
+    Acumulo100BolitasVerdes(); Acumulo100BolitasVerdes();
+    Acumulo100BolitasVerdes();
+}
+procedure Acumulo100BolitasVerdes(){
+    /*Proposito: Poner 100 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Acumulo50BolitasVerdes(); Acumulo50BolitasVerdes();
+}
+procedure Acumulo5BolitasVerdes(){
+    /*Proposito: Poner 5 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+}
+procedure Acumulo40BolitasVerdes(){
+    /*Proposito: Poner 40 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+}
+procedure Acumulo30BolitasVerdes(){
+     /*Proposito: Poner 30 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+}
+procedure Acumulo50BolitasVerdes(){
+    /*Proposito: Poner 50 cantidad de bolitas Verdes.
+      Precondicion: la celda actual debe estar vacia.
+    */
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+    Poner(Verde);
+}
