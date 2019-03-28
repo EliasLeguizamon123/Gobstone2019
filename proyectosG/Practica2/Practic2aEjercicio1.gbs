@@ -1,0 +1,46 @@
+program{
+    PonerGuardaDe5Azulejos()
+}
+procedure PonerGuardaDe5Azulejos(){
+    /*Proposito: "Dibujar" una guarda de azulejos de longitud 5
+                  La cual conlleva bolitas de color rojo (9), de
+                  color negro (5) y de color verde (1).
+      Precondicion: Debe haber al menos 5 celdas al Este de la celda actual.
+    
+    */
+    
+    repeat(4){
+        DibujarEslabonDeAzulejos();
+        Mover(Este);
+    }
+    DibujarEslabonDeAzulejos();
+    
+    
+}
+procedure DibujarEslabonDeAzulejos(){
+    /*Proposito: Dibuja 1 eslabon de la guarda de azulejos, poniendo bolitas
+                 rojas (9), negras (5) y verdes (1).
+      Precondicion: ninguna.
+    
+    */
+    PonerAzulejosRojos();
+    PonerAzulejosNegros();
+    Poner(Verde);
+    
+}
+procedure PonerAzulejosRojos(){
+     /*Proposito: Pone 9 azulejos rojos.
+      Precondicion: ninguna.
+    */
+ repeat (9){
+     Poner(Rojo);
+ }   
+}
+procedure PonerAzulejosNegros(){
+    /*Proposito: Pone 5 azulejos negros.
+      Precondicion: ninguna.
+    */
+    repeat (5){
+        Poner(Negro);
+    }
+}
