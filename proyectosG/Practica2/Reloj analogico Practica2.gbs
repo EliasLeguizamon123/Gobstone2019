@@ -1,0 +1,212 @@
+program{
+    DibujarRelojAnalogicoSimplificado()
+}
+procedure DibujarRelojAnalogicoSimplificado(){
+    /*  Proposito: Dibujar un reloj analògico "simplificado" es decir que solamente se dibujaran
+                   las unidades ubicadas en (3,6,9,12), todo con bolitas de color Rojo.
+        Precondicion: *La celda actual debe ser el centro del reloj.
+                      *El tablero debe ser de al menos 5x5 de longitud.
+                      *El cabezal debe volver al inicio.
+    */
+    DibujarPuntaNorte12();
+    DibujarPuntaEste3();
+    DibujarPuntaSur6();
+    DibujarPuntaOeste9();
+}
+procedure DibujarPuntaNorte12(){
+    /*
+        Proposito: Dibujar la punta Norte del reloj (12) con bolitas rojas.
+        Precondicion:
+                      *Debe haber 2 celdas al norte de la actual.
+                      *La celda debe estar vacia.
+                      *El cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    
+    */
+    MovermeAlExtremoNorteDelReloj();
+    Poner12BolitasRojas();
+    VolverAlCentroDesdeElExtremoNorte();
+}
+procedure MovermeAlExtremoNorteDelReloj(){
+    /*
+        Proposito: Moverme al extremo norte del reloj para dibujar la punta 12 con bolitas rojas
+        Precondicion: 
+                       *debe haber 2 celdas al norte.
+    
+    */
+    Mover(Norte);
+    Mover(Norte);
+}
+procedure Poner5BolitasRojas(){
+    /*
+        Proposito: Poner 5 bolitas de color Rojo en la celda actual.
+        Precondicion: ninguna.
+    */
+    Poner(Rojo);
+    Poner(Rojo);
+    Poner(Rojo);
+    Poner(Rojo);
+    Poner(Rojo);
+}
+procedure Poner10BolitasRojas(){
+    /*
+        Proposito: Poner 10 bolitas de color Rojo en la celda actual.
+        Precondicion: ninguna.
+    */
+    Poner5BolitasRojas();
+    Poner5BolitasRojas();
+}
+procedure Poner12BolitasRojas(){
+    /*
+        Proposito: Poner 12 bolitas de color Rojo, las cuales representan el extremo Norte del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    Poner10BolitasRojas();
+    Poner(Rojo);
+    Poner(Rojo);
+}
+procedure VolverAlCentroDesdeElExtremoNorte(){
+        /*
+        Proposito: Moverme al centro del reloj desde el extremo Norte.
+        Precondicion: 
+                       *debe haber 2 celdas al sur.
+    */
+    Mover(Sur);
+    Mover(Sur);
+}
+procedure DibujarPuntaEste3(){
+    /*
+        Proposito: Dibujar la punta Este del reloj (3) con bolitas rojas.
+        Precondicion:
+                      *Debe haber 2 celdas al Este de la actual.
+                      *La celda debe estar vacia.
+                      *El cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    
+    */
+    MovermeAlExtremoEsteDelReloj();
+    Poner3BolitasRojas();
+    VolverAlCentroDesdeElExtremoEste();
+}
+procedure MovermeAlExtremoEsteDelReloj(){
+    /*
+        Proposito: Moverme al extremo Este del reloj para dibujar la punta 12 con bolitas rojas
+        Precondicion: 
+                       *debe haber 2 celdas al Este.
+    
+    */
+    Mover(Este);
+    Mover(Este);
+}
+procedure Poner3BolitasRojas(){
+    /*
+        Proposito: Poner 3 bolitas de color Rojo, las cuales representan el extremo Este del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    Poner(Rojo);
+    Poner(Rojo);
+    Poner(Rojo);
+}
+procedure VolverAlCentroDesdeElExtremoEste(){
+        /*
+        Proposito: Moverme al centro del reloj desde el extremo Este.
+        Precondicion: 
+                       *debe haber 2 celdas al Oeste.
+    */
+    Mover(Oeste);
+    Mover(Oeste);
+}
+procedure DibujarPuntaSur6(){
+    /*
+        Proposito: Dibujar la punta Sur del reloj (6) con bolitas rojas.
+        Precondicion:
+                      *Debe haber 2 celdas al Sur de la actual.
+                      *La celda debe estar vacia.
+                      *El cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    
+    */
+    MovermeAlExtremoSurDelReloj();
+    Poner6BolitasRojas();
+    VolverAlCentroDesdeElExtremoSur();
+}
+procedure MovermeAlExtremoSurDelReloj(){
+     /*
+        Proposito: Moverme al extremo Sur para dibujar la punta 12 con bolitas rojas.
+        Precondicion: 
+                       *debe haber 2 celdas al sur.
+    */
+    Mover(Sur);
+    Mover(Sur);
+}
+procedure Poner6BolitasRojas(){
+    /*
+        Proposito: Poner 6 bolitas de color Rojo, las cuales representan el extremo sur del 
+                   reloj.
+        Precondicion: Ninguna.
+    */
+    Poner5BolitasRojas()
+    Poner(Rojo);
+}
+procedure VolverAlCentroDesdeElExtremoSur(){
+     /*
+        Proposito: Moverme al centro del reloj desde el extremo Sur.
+        Precondicion: 
+                       *debe haber 2 celdas al Norte.
+    */
+    Mover(Norte);
+    Mover(Norte);
+}
+procedure DibujarPuntaOeste9(){
+    /*
+        Proposito: Dibujar la punta Oeste del reloj (9) con bolitas rojas.
+        Precondicion:
+                      *Debe haber 2 celdas al Oeste de la actual.
+                      *La celda debe estar vacia.
+                      *El cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    
+    */
+    MovermeAlExtremoOesteDelReloj();
+    Poner9BolitasRojas();
+    VolverAlCentroDesdeElExtremoOeste();
+}
+procedure MovermeAlExtremoOesteDelReloj(){
+    /*
+        Proposito: Moverme al extremo Oeste del reloj para dibujar la punta 9 con bolitas rojas
+        Precondicion: 
+                       *debe haber 2 celdas al Oeste.
+    
+    */
+    Mover(Oeste);
+    Mover(Oeste);
+}
+procedure Poner9BolitasRojas(){
+    /*
+        Proposito: Poner 9 bolitas de color Rojo, las cuales representan el extremo sur del 
+                   reloj.
+        Precondicion: Ninguna.
+    */
+    Poner6BolitasRojas();
+    Poner3BolitasRojas();
+}
+procedure VolverAlCentroDesdeElExtremoOeste(){
+     /*
+        Proposito: Moverme al centro del reloj desde el extremo Oeste.
+        Precondicion: 
+                       *debe haber 2 celdas al Este.
+    */
+    Mover(Este);
+    Mover(Este);
+}
+
+
+
+
+
+
+
+
+
