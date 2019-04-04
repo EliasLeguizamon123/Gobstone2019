@@ -1,0 +1,216 @@
+program {
+    DibujarRelojAnalógicoSimplificadoDeRadio_(3)
+}
+procedure DibujarRelojAnalógicoSimplificadoDeRadio_(radio){
+    /*
+        Proposito: Dibujar un reloj analògico "simplificado" es decir que solamente se dibujaran
+                   las unidades ubicadas en (3,6,9,12), todo con bolitas de color Rojo, la celda 
+                   actual debe estar ubicada en el centro del reloj, 
+        Precondicion:
+                     *la longitud del reloj debe estar dada por el parametro (radio).
+                     *(radio) debe ser un numero.
+                     *El Tablero inicial debe ser de al menos 5x5.
+        Parametros: 
+                     *radio: Numero - representa la distancia entre el centro del reloj y las 
+                             Puntas de este.
+    */ 
+    DibujarPuntaNorteDeLongitud_(radio);
+    DibujarPuntaEsteDeLongitud_(radio);
+    DibujarPuntaSurDeLongitud_(radio);
+    DibujarPuntaOesteDeLongitud_(radio);
+}
+procedure DibujarPuntaNorteDeLongitud_(radio){          //Punta Norte
+    /* 
+        Proposito: Dibujar el extremo Norte del reloj (12) representado por 12 bolitas de color 
+                   Rojo.
+        Precondicion: 
+                      *Debe haber (radio) celdas al norte de la celda actual.
+                      *La celda debe estar vacia.
+                      *El Cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    */
+    MovermeAlNorteEnLongitud_(radio);
+    Poner12BolitasRojas();
+    VolverAlCentroDesdeElExtremoNorteConUnaLongitudDe_(radio);
+}
+procedure MovermeAlNorteEnLongitud_(radio){
+    /*
+        Proposito: Moverme (radio) veces Hacia el Norte.
+        Precondicion:  
+                      *Debe haber (radio) celdas al norte de la celda actual.
+    */
+    repeat (radio){
+        Mover(Norte);
+    }
+}
+procedure VolverAlCentroDesdeElExtremoNorteConUnaLongitudDe_(radio){
+    /*
+        Proposito: Vuelve desde el extremo norte del reloj hasta el centro.
+        Precondicion:
+                      *El centro debe estar a (radio) celdas al sur del extremo norte.
+    */
+    repeat (radio){
+        Mover(Sur);
+    }
+}
+
+procedure DibujarPuntaEsteDeLongitud_(radio){          //Punta Este del reloj           
+    /* 
+        Proposito: Dibujar el extremo Este del reloj (3) representado por 3 bolitas de color 
+                   Rojo.
+        Precondicion: 
+                      *Debe haber (radio) celdas al Este de la celda actual.
+                      *La celda debe estar vacia.
+                      *El Cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    */
+    MovermeAlEsteEnLongitud_(radio);
+    Poner3BolitasRojas();
+    VolverAlCentroDesdeElExtremoEsteConUnaLongitudDe_(radio);
+}
+procedure MovermeAlEsteEnLongitud_(radio){
+    /*
+        Proposito: Moverme (radio) veces Hacia el Este.
+        Precondicion:  
+                      *Debe haber (radio) celdas al Este de la celda actual.
+                      *(radio) es un numero entero.
+    */
+    repeat (radio){
+        Mover(Este);
+    }
+}
+procedure VolverAlCentroDesdeElExtremoEsteConUnaLongitudDe_(radio){
+    /*
+        Proposito: Vuelve desde el extremo Este del reloj hasta el centro.
+        Precondicion:
+                      *El centro debe estar a (radio) celdas al Oeste del extremo norte.
+    */
+    repeat (radio){
+        Mover(Oeste);
+    }
+}
+
+procedure DibujarPuntaSurDeLongitud_(radio){          //Punta Sur del reloj           
+    /* 
+        Proposito: Dibujar el extremo Sur del reloj (6) representado por 6 bolitas de color 
+                   Rojo.
+        Precondicion: 
+                      *Debe haber (radio) celdas al Sur de la celda actual.
+                      *La celda debe estar vacia.
+                      *El Cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    */
+    MovermeAlSurEnLongitud_(radio);
+    Poner6BolitasRojas();
+    VolverAlCentroDesdeElExtremoSurConUnaLongitudDe_(radio);
+}
+procedure MovermeAlSurEnLongitud_(radio){
+    /*
+        Proposito: Moverme (radio) veces Hacia el Sur.
+        Precondicion:  
+                      *Debe haber (radio) celdas al Sur de la celda actual.
+                      *(radio) es un numero entero.
+    */
+    repeat (radio){
+        Mover(Sur);
+    }
+}
+procedure VolverAlCentroDesdeElExtremoSurConUnaLongitudDe_(radio){
+    /*
+        Proposito: Vuelve desde el extremo Sur del reloj hasta el centro.
+        Precondicion:
+                      *El centro debe estar a (radio) celdas al Norte del extremo norte.
+    */
+    repeat (radio){
+        Mover(Norte);
+    }
+}
+
+procedure DibujarPuntaOesteDeLongitud_(radio){          //Punta Oeste del reloj           
+    /* 
+        Proposito: Dibujar el extremo Oeste del reloj (3) representado por 3 bolitas de color 
+                   Rojo.
+        Precondicion: 
+                      *Debe haber (radio) celdas al Oeste de la celda actual.
+                      *La celda debe estar vacia.
+                      *El Cabezal debe estar en el centro del reloj.
+                      *El cabezal debe volver al inicio.
+    */
+    MovermeAlOesteEnLongitud_(radio);
+    Poner9BolitasRojas();
+    VolverAlCentroDesdeElExtremoOesteConUnaLongitudDe_(radio);
+}
+procedure MovermeAlOesteEnLongitud_(radio){
+    /*
+        Proposito: Moverme (radio) veces Hacia el Oeste.
+        Precondicion:  
+                      *Debe haber (radio) celdas al Oeste de la celda actual.
+                      *(radio) es un numero entero.
+    */
+    repeat (radio){
+        Mover(Oeste);
+    }
+}
+procedure VolverAlCentroDesdeElExtremoOesteConUnaLongitudDe_(radio){
+    /*
+        Proposito: Vuelve desde el extremo Oeste del reloj hasta el centro.
+        Precondicion:
+                      *El centro debe estar a (radio) celdas al Oeste del extremo norte.
+    */
+    repeat (radio){
+        Mover(Este);
+    }
+}
+
+
+
+
+
+
+
+procedure Poner12BolitasRojas(){
+    /*
+        Proposito: Poner 12 bolitas de color Rojo, las cuales representan el extremo Norte del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    repeat(12){
+        Poner(Rojo);
+    }
+}
+procedure Poner3BolitasRojas(){
+    /*
+        Proposito: Poner 3 bolitas de color Rojo, las cuales representan el extremo Este del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    repeat(3){
+        Poner(Rojo)
+    }
+}
+procedure Poner6BolitasRojas(){
+    /*
+        Proposito: Poner 6 bolitas de color Rojo, las cuales representan el extremo Este del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    repeat(6){
+        Poner(Rojo)
+    }
+}
+procedure Poner9BolitasRojas(){
+    /*
+        Proposito: Poner 3 bolitas de color Rojo, las cuales representan el extremo Este del 
+                   reloj.
+        Precondicion: ninguna.
+    */
+    repeat(9){
+        Poner(Rojo)
+    }
+}
+
+
+
+
+
+
