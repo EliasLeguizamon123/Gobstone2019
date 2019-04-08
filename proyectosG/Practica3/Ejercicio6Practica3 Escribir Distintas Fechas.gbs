@@ -1,0 +1,111 @@
+program{
+    InicioDeLaReformaUniversitaria();
+}
+procedure EscribirFecha___(dia, mes, año){
+    /*
+        Proposito: Escribir fechas distintas con bolitas de colores, los dias con bolitas de 
+                   color Azul, los meses con bolitas de color Rojo y los años con bolitas de 
+                   color Verde.
+                   las mismas van a ser colocadas en un orden logico hacia el este de la celda 
+                   actual, primero los dias (Azul) en la celda actual, despues los meses (Rojo) 
+                   en la celda lindante al este de la celda actual y por ultimo el año (Verde) 
+                   que esta ubicado 2 celdas al este de la celda actual.
+                   
+        Precondicion:                      
+                      * Debe haber al menos 2 celdas al este de la celta actual.
+                      * Las celdas deben estar vacias.
+                      
+        Parametros: 
+                    * dìa - Nùmero: son los dias de la fecha que necesito representar.
+                    * mes - Nùmero: son los meses de la fecha que necesito representar.
+                    * año - Nùmero: son los años de la fecha que necesito representar.
+    */
+    EscribirElDia(dia);
+    EscribirElMes(mes);
+    EscribirElAño(año);
+    
+}
+
+procedure EscribirElDia(dia){
+    /*
+        Proposito: Escribir el dia en la celda actual, el cual esta representado por bolitas
+                   de color Azul y luego me translada el cabezal a la siguiente celda donde
+                   Se escribirà el mes (1 celda al Este).
+        Precondicion: 
+                      * La celda actual debe estar vacia.
+                      * Debe haber una celda al Este
+    */
+    repeat(dia){
+        Poner(Azul);
+    }
+    Mover(Este);
+}
+procedure EscribirElMes(mes){
+    /*
+        Proposito: Escribir el mes en la celda actual, el cual esta representado por bolitas de 
+                   color Rojo y luego me translada el cabezal a la siguiente celda donde se 
+                   escribirà el año (1 celda al Este.)
+        Precondiciòn:
+                      * La celda actual debe estar vacia
+                      * Debe haber una celda al Este
+    */
+    repeat (mes){
+        Poner(Rojo);
+    }
+    Mover(Este);
+}
+procedure EscribirElAño(año){
+    /*
+        Prosito: Escribir el año en la celda actual, el cual esta representado por bolitas de 
+                 color Negro y luego me translada el cabezal 2 celdas al Oeste.
+        Precondiciòn:
+                      *La celda actual debe estar vacia.
+    */
+    repeat (año){
+        Poner(Negro);
+    }
+    Mover(Oeste);
+    Mover(Oeste);
+}
+procedure ListadoDeFechas(){
+    /*
+        Proposito: Escribir un listado de distintas fechas importantes (las cuales son  
+                    ●inicio de la Reforma Universitaria;
+                    ● reglamentación del voto femenino en Argentina;
+                    ● puesta en funcionamiento de la Tecnicatura Universitaria en Programación
+                    Informática de la UNQ;
+                    ● fecha en la que ocurrieron los hechos conmemorados en el Día Internacional de
+                    los Trabajadores;
+                    ● creación del Ministerio de Ciencia y Tecnología argentino;
+                    ● primera celebración del Día de la Mujer;
+                    ● disolución del Ministerio de Ciencia y Tecnología argentino.)
+                  El listado serà hacia el Norte.
+        Precondicion: 
+                      * El tablero debe ser de al menos 3x7.
+                      * El cabezal debe comenzar en el extremo Sur-Oeste.
+                    
+    */
+    InicioDeLaReformaUniversitaria()
+   /* ReglamentacionDelVotoFemenino()*/
+    
+}
+procedure InicioDeLaReformaUniversitaria(){
+    /*
+        Proposito: Escribir la Fecha del inicio de la reforma universitaria.
+        Precondicion:
+                      * Idem Precondicion "EscribirFecha___(dia, mes, año)"
+    */
+    EscribirFecha___(21, 6, 1918);
+}
+
+
+
+
+
+
+
+
+
+
+
+
