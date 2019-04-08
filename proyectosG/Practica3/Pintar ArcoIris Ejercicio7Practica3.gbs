@@ -1,0 +1,91 @@
+program{
+    PintarArcoIris()
+}
+procedure PintarArcoIris(){
+    /*
+        Pròposito: Pintar un Arcoiris de colores, los colores se repetiran cada 2 celdas de 
+                   distancia, el primer color serà negro, luego azul, luego rojo, por ultimo en la
+                   fila superior se dibujarà el color verde con el mismo pretexto que los 
+                   colores anteriores.
+        Precondiciòn:
+                      * El tablero deberà tener como minimo las medidas de 9x2.
+                      * Todas sus celdas deberàn estar vacias.
+                      * El cabezal debera volver al inicio al final del programa.
+    */
+    Pintar3PuntosDeColor_(Negro);
+    MoverAlSiguientePunto(Este);
+    Pintar3PuntosDeColor_(Azul);
+    MoverAlSiguientePunto(Este);
+    Pintar3PuntosDeColor_(Rojo);
+    MoverAlSiguientePunto(Norte);
+    MoverAlSiguientePunto(Oeste);
+    Pintar3PuntosDeColor_(Verde);
+    VolverAlInicio()
+}
+procedure MoverAlSiguientePunto(direccion){
+    /*
+        Proposito: Mover el cabezal al siguiente punto de color del Arcoiris.
+        Precondicion: 
+                      * En la direccion "direccion" debe existir una celda vacia
+        Parametros: direccion - es una direccion a la cual moverse 1 vez. 
+    */
+    Mover(direccion);
+}
+procedure VolverAlInicio(){
+    /*
+        Proposito: Volver a la celda inicial del procedimiento "PintarArcoIris" la cual es el 
+                   extremo Sur-Oeste del tablero.
+        Precondicion: 
+                      * El inicio del procedimiento "PintarArcoiris" debe ser el extremo 
+                        Sur-Oeste del tablero.
+    */
+    IrAlBorde(Sur);
+    IrAlBorde(Oeste);
+}
+
+
+procedure Pintar3PuntosDeColor_(color) {    //Ejercicio Anterior.
+    /*
+        Proposito: Poner 3 puntos de color azul intercalados con celdas vacias entre medio de 
+                   cada bolita de color azul colocada.
+        Precondicion:
+                      * Debo tener 7 celdas lindantes al Este de la celda actual.
+                      * El cabezal debe volver al inicio.
+                      * Las celdas deben estar vacias.
+        Parametros: color - Es un color de bolitas a colocar en el tablero.
+        
+    */
+    Poner(color)
+    Poner_ADistancia3Al_(color, Este)
+    Poner_ADistancia3Al_(color, Este)
+    Mover_3Veces(Oeste) Mover_3Veces(Oeste)
+}
+procedure Poner_ADistancia3Al_(color, direccion){
+    /*
+        Proposito: Moverme 3 celdas al "direccion" de la celda Actual y poner una bolita de color
+                   "color"
+        Precondicion:
+                      * Debe existir al menos 3 celdas al "direccion" de la celda actual.
+                      * La tercer celda a la direccion "direccion" debe estar vacia.
+        Parametros: color - Es un color de bolitas a colocar en el tablero.
+                    direccion - es una direccion dada en la cual moverse 3 veces.
+        
+    */
+    repeat(3){
+        Mover(direccion);
+        
+    }
+    Poner(color);
+}
+procedure Mover_3Veces(direccion){
+    /*
+        Proposito: Me muevo 3 veces en la direccion "direccion".
+        Precondicion: 
+                      * Deben existir al menos 3 celdas en la direccion "direccion" de la celda 
+                        actual.
+        Parametros: direccion - es una direccion dada en la cual moverse 3 veces.
+    */
+    repeat(3){
+        Mover(direccion);
+    }
+}

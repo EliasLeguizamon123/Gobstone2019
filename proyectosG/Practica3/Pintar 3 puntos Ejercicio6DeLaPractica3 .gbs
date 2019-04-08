@@ -1,0 +1,46 @@
+program{
+    Pintar3PuntosDeColor_(Rojo)
+}
+procedure Pintar3PuntosDeColor_(color) {
+    /*
+        Proposito: Poner 3 puntos de color azul intercalados con celdas vacias entre medio de 
+                   cada bolita de color azul colocada.
+        Precondicion:
+                      * Debo tener 7 celdas lindantes al Este de la celda actual.
+                      * El cabezal debe volver al inicio.
+                      * Las celdas deben estar vacias.
+        
+    */
+    Poner(color)
+    Poner_ADistancia3Al_(color, Este)
+    Poner_ADistancia3Al_(color, Este)
+    Mover_3Veces(Oeste) Mover_3Veces(Oeste)
+}
+
+
+procedure Poner_ADistancia3Al_(color, direccion){
+    /*
+        Proposito: Moverme 3 celdas al "direccion" de la celda Actual y poner una bolita de color
+                   "color"
+        Precondicion:
+                      * Debe existir al menos 3 celdas al "direccion" de la celda actual.
+                      * La tercer celda a la direccion "direccion" debe estar vacia.
+        
+    */
+    repeat(3){
+        Mover(direccion)
+        
+    }
+    Poner(color)
+}
+procedure Mover_3Veces(direccion){
+    /*
+        Proposito: Me muevo 3 veces en la direccion "direccion".
+        Precondicion: 
+                      * Deben existir al menos 3 celdas en la direccion "direccion" de la celda 
+                        actual.
+    */
+    repeat(3){
+        Mover(direccion)
+    }
+}
