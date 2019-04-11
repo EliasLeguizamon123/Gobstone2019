@@ -1,0 +1,136 @@
+program{
+    DibujarBanda_EnDiagonalNEDe_x_(Azul, 3, 5)
+    
+}
+/*
+procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo){*/
+    /*
+        Propòsito: Dibujar una banda en diagonal, de color "color" con las medidas de "largo" largo y "ancho" ancho, la 
+                   diagonal comienza en la esquina Sur-Oeste, dibuja una linea de alto "alto", sube y se mueve al Este para 
+                   luego volver a comenzar a dibujar la proxima linea.
+        Precondiciòn: 
+                      * El cabezal debe estar ubicado en el borde Sur-Oeste.
+                      * Las medidas del tablero  deben ser al menos de "alto" x "largo".
+                      * El cabezal debe termiar en el extremo Sur-Oeste de mi banda diagonal dibujada.
+        Paràmetros: 
+                      .color - Es un color que representa el color de la banda diagonal que voy a dibujar.
+                      .alto - Es un nùmero que representa el largo de cada linea eslabon de mi banda diagonal.
+                      .largo - Es un nùmero que representa el largo de mi banda diagonal.
+    */
+/*    repeat (largo-1){
+        DibujarLineaDeColor_YAlto_(color, alto);
+        ColocarEnSiguienteLinea();
+    }
+    DibujarLineaDeColor_YAlto_(color, alto);
+    VolverAlInicioDeMiBanda(alto, largo);
+}
+procedure DibujarLineaDeColor_YAlto_(color, alto){*/
+    /*
+        Procedimiento: Dibujar una linea de un color "color" con un largo que està dado por "alto", hacia el norte.
+        Precondiciòn: 
+                      * Debe haber "alto" celdas lindantes de la celda actual.
+                      * La celda actual, como las lindantes deben estar vacias (sin bolitas).
+        Paràmetros:   
+                      .color - Es un color que representa el color de bolitas que voy a colocar en mi linea. 
+                      .alto - Es un nùmero que representa el alto de mi linea de bolitas.
+    */
+/*    repeat (alto){
+        Poner(color);
+        Mover(Norte);
+    }
+    Poner(color)
+    repeat (alto){
+        Mover(Sur);
+    }
+}
+procedure ColocarEnSiguienteLinea(){*/
+    /*
+        Propòsito: Colocar el cabezal en el comienzo de la siguiente linea para poder dibujarla y continuar con mi banda 
+                   diagonal.
+        Precondiciòn:
+                      * El cabezal debe terminar en una celda al Nor-Este de la celda actual
+    */
+ /*   
+    Mover(Este);
+    Mover(Norte);
+}
+procedure VolverAlInicioDeMiBanda(alto, largo){*/
+    /*
+        Propòsito: Volver al inicio de mi banda diagonal.
+        Precondiciòn:
+                      * Los parametros "alto" y "largo" deben ser iguales.
+        Paràmetros:
+                    .alto - Es un numero que representa la cantidad de celdas que me tengo que mover en direcciòn Sur.
+                    .largo - Es un nùmero que representa la cantidad de celdas que me tengo que mover en direcciòn Oeste.
+    *//*
+    repeat(alto-1){
+        Mover(Sur);
+        
+    }
+
+    repeat(largo-1){
+        Mover(Oeste)
+    }
+    
+}
+*/
+ 
+// RESOLUCION DEL PROFESOR                                              !!!!!!!!!!!!!!!!!NO VUELVE¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+
+
+procedure DibujarBanda_EnDiagonalNEDe_x_(color, alto, largo){
+    /*
+        Propòsito: Dibujar una banda en diagonal, de color "color" con las medidas de "largo" largo y "ancho" ancho, la 
+                   diagonal comienza en la esquina Sur-Oeste, dibuja una linea de alto "alto", sube y se mueve al Este para 
+                   luego volver a comenzar a dibujar la proxima linea.
+        Precondiciòn: 
+                      * El cabezal debe estar ubicado en el borde Sur-Oeste.
+                      * Debe haber al menos (largo + alto) - 2
+                      * El cabezal debe termiar en el extremo Sur-Oeste de mi banda diagonal dibujada.
+        Paràmetros: 
+                      .color - Es un color que representa el color de la banda diagonal que voy a dibujar.
+                      .alto - Es un nùmero que representa el largo de cada linea eslabon de mi banda diagonal.
+                      .largo - Es un nùmero que representa el largo de mi banda diagonal.
+    */
+    repeat (largo-1){
+        DibujarLineaDeColor_YAlto_(color, alto);
+        ColocarEnSiguienteLinea()
+    }
+    DibujarLineaDeColor_YAlto_(color, alto);    
+}
+procedure DibujarLineaDeColor_YAlto_(color, alto){
+    /*
+        Procedimiento: Dibujar una linea de un color "color" con un largo que està dado por "alto", hacia el norte.
+        Precondiciòn: 
+                      * Debe haber "alto" celdas lindantes de la celda actual.
+                      * La celda actual, como las lindantes deben estar vacias (sin bolitas).
+        Paràmetros:   
+                      .color - Es un color que representa el color de bolitas que voy a colocar en mi linea. 
+                      .alto - Es un nùmero que representa el alto de mi linea de bolitas.
+    */
+    repeat (alto-1){
+        Poner(color);
+        Mover(Norte);
+    }
+    Poner(color)
+    
+    repeat (alto-1){
+        Mover(Sur);
+    }
+}
+procedure ColocarEnSiguienteLinea(){
+    /*
+        Propòsito: Colocar el cabezal en el comienzo de la siguiente linea para poder dibujarla y continuar con mi banda 
+                   diagonal.
+        Precondiciòn:
+                      * El cabezal debe terminar en una celda al Nor-Este de la celda actual
+    */
+    Mover(Este);
+    Mover(Norte);
+}
+procedure VolverAlInicioDeMiBanda(alto, largo){
+    
+}
+
+
+
