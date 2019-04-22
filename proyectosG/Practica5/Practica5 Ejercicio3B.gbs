@@ -1,0 +1,49 @@
+program{
+    DesempatarParaElLocal__(Rojo,Verde)
+}
+procedure DesempatarParaElLocal__(colorDelLocal,colorDelVisitante){
+    /*
+        Proposito: Si el equipo local representado por "colorDelLocal" va el mismo puntaje que el equipo 
+                   visitante "colorDelVisitante", el equipo local recibe 1 punto extra en el partido.
+        Precondicion: 
+                      * Los equipos deben tener exclusicamente el mismo puntaje.
+                      * Debe haber al menos una bolita de color "colorDelLocal" y una de color 
+                        "colorDelVisitante".
+                      * Debe haber la misma cantidad de bolitas de los colores"colorDelLocal" y 
+                        "colorDelVisitante".
+        Parametros: 
+                    .colorDelLocal - Un color que representa al color del equipo local.
+                    .colorDelVisitante - Un color que representa al color del equipo visitante.
+    */
+    if(puntajeDelPartidoEmpatado(colorDelLocal, colorDelVisitante)){
+        PuntoParaElLocal(colorDelLocal)
+    }
+}
+procedure PuntoParaElLocal(colorDelLocal){
+    /*
+        Proposito: Le proporciona un punto extra al equipo local "colorDelLocal".
+        Precondicion: 
+                      * Debe haber al menos una bolita de color "colorDelLocal"
+        Parametros: idem "DesempatarParaElLocal__(colorDelLocal,colorDelVisitante)"
+    */ 
+    Poner(colorDelLocal)
+}
+function puntajeDelPartidoEmpatado(colorDelLocal, colorDelVisitante){
+    /*
+        Proposito: Indica si el partido está empatado.
+        Precondicion: 
+                      * ninguna. 
+        Retorna: Un valor de verdad
+                    * Es verdadero si el partido esta empatado.
+                    * Es falso si no hay empate de ningun tipo.
+    */
+    return(nroBolitas(colorDelLocal) == nroBolitas(colorDelVisitante));
+}
+
+
+
+
+
+
+
+

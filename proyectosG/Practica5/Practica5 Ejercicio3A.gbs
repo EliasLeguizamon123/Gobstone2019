@@ -1,0 +1,38 @@
+program{
+    SacarUnaFicha_SiSePuede(Verde)
+}
+procedure SacarUnaFicha_SiSePuede(colorDeLaFicha){
+    /*
+        Proposito: Sacar una ficha del color correspondiente, en caso de no tener ninguna ficha del
+                   color "colorDeLaFicha" no se sacará ninguna ficha, Solamente se podrá sacar una 
+                   ficha a la vez, las fichas estan representadas por bolitas del color 
+                   correspondiente.
+        Precondicion:
+                      * ninguna.
+        Parametros:
+                    .colorDeLaFicha - Es un color que representa las fichas que tengo que sacar
+    */ 
+    if (hayFichas(colorDeLaFicha)){
+        SacarFicha(colorDeLaFicha);
+    }
+}
+procedure SacarFicha(colorDeLaFicha){
+    /*
+        Proposito: Sacar una ficha del color "colorDeLaFicha"
+        Precondicion: ninguna.
+        Parametros: idem "SacarUnaFicha_SiSePuede"
+    */
+    Sacar(colorDeLaFicha);
+}
+function hayFichas(colorDeLaFicha){
+    /*
+        Proposito: Identificar si hay una ficha del color "colorDeLaFicha" en la celda actual.
+        Preconficion: ninguna (es una funcion total).
+        Denota : un valor de verdad
+                    * Es verdadero si hay una ficha del color correspondiente.
+                    * Es falso si no la hay.
+    */
+    return(hayBolitas(colorDeLaFicha));
+}
+
+

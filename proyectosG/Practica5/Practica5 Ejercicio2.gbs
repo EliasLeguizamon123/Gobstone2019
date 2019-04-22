@@ -1,0 +1,69 @@
+program{
+     return(noHayBolitasMulticolores())
+}
+function masDe5Bolitas(color){
+    /*
+        Proposito: Indica si hay mas de 5 bolitas de un color en la celda actual
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad.
+                 * Es verdadero si hay mas de 5 bolitas del color "color" en la celda actual.
+                 * Es falso si hay menos de 5 bolitas del color "color" en la celda actual.
+    */
+    return(nroBolitas(color) > 5)
+}
+function menosDe5Bolitas(color){
+    /*
+        Proposito: Indica si hay menos de 5 bolitas de un color en la celda actual
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad.
+                 * Es verdadero si hay menos de 5 bolitas del color "color" en la celda actual.
+                 * Es falso si hay mas de 5 bolitas del color "color" en la celda actual.
+    */
+    return(nroBolitas(color) < 5)
+}
+function puedoMoverOesteYAlmenos5Bolitas(color){
+    /*
+        Proposito: Indica si la celda actual tiene al menos 5 bolitas del color "color" y si estoy
+                   al borde Este del tablero.
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad
+                 * Es verdadero si hay al menos 5 bolitas del color "color" y tambien no me 
+                   puedo mover al Este.
+                 * Es falso si no hay 5 bolitas de color "color" y tambien me puedo mover al 
+                   Este.
+    */
+    return (nroBolitas(color) >= 5 && not puedeMover(Este))
+}
+function mePuedoMoverAlNorteYEste(){
+    /*
+        Proposito: Me indica si hay celdas lindantes al norte y al este de la celda actual.
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad
+                 * Es verdadero si hay celdas lindantes al norte y tambien al este.
+                 * Es falso si no hay celdas lindantes al norte y tambien al este.
+    */
+    return(puedeMover(Norte) && puedeMover(Este));
+}
+function hayBolitasMulticolores(){
+    /*
+        Proposito: Indica si hay bolitas de todos los colores.
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad.
+                 * Es verdadero si hay bolitas de todos los colores en la celda actual.
+                 * Es falso si no hay bolitas de todos los colores en la celda actual.
+    */
+    return(hayBolitas(Rojo) && hayBolitas(Azul) && hayBolitas(Verde) && hayBolitas(Negro));
+}
+function noHayBolitasMulticolores(){
+    /*
+        Proposito: Indica si no hay bolitas de todos los colores.
+        Precondicion: ninguna (es una funcion total).
+        Retorna: un valor de verdad.
+                 * Es verdadero si no hay bolitas de todos los colores en la celda actual.
+                 * Es falso si hay bolitas de al menos un color en la celda actual.
+    */
+    return(not hayBolitas(Rojo) && not hayBolitas(Verde) && not hayBolitas(Azul) && not hayBolitas(Negro));
+}
+
+
+

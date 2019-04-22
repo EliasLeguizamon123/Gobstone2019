@@ -1,0 +1,48 @@
+program{
+    ExpandirBacterias();
+}
+procedure ExpandirBacterias(){
+    /*
+        Proposito: Expandir una bacteria en caso de que haya sufiecientes nutrientes en la celda actual.
+        Precondicion: 
+                      * Debe haber una bacteria en la celda actual.
+                      * Debe haber suficientes nutrientes en la celda actual.
+        Observaciones: Las bacterias estan representadas por bolitas de color verde, los nutrientes por bolitas
+                       color Rojo, para poder expandir la bacteria debe haber una bacteria pequeña (1 Verde) y
+                       dos nutrientes (2 Rojo).
+    */
+    if(puedoExpandirBacteria()){
+        ExpandirBacteria();
+    }
+}
+procedure ExpandirBacteria(){
+    /*
+        Proposito: Expandir una bacteria en la celda actual.
+        Precondicion: 
+                      * Debe haber una bacteria en la celda actual.
+                      * Debe haber los nutrientes necesarios en la celda actual.
+    */
+    repeat (2){
+        Sacar(Rojo);
+    }
+    Poner(Verde);
+}
+function puedoExpandirBacteria(){
+    /*
+        Proposito: Denotar si la bacteria se puede expandir.
+        PRecondicion: 
+                      * Debe haber 2 nutrientes en la celda actual.
+                      * Debe haber una bacteria en la celda.
+    */
+    return(nroBolitas(Rojo) == 2 && nroBolitas(Verde) == 1);
+    
+}
+
+
+
+
+
+
+
+
+
