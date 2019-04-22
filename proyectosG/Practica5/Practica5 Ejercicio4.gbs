@@ -1,0 +1,54 @@
+program{
+    PudrirManzana()
+}
+procedure PudrirManzana(){
+    /*
+        Proposito: Pudrir una manzana en la celda actual en caso de que tambien haya un gusano en la misma 
+                   celda.
+        Observacion: Las manzanas estan representadas por bolitas de color Rojo, los gusanos por bolitas de 
+                     color Verde y las manzanas podridas por bolitas de color Negro.
+        Precondicion: 
+                      * Debe haber un gusano en la misma celda que una manzana para pudrirla.
+                      
+    */
+    if(hayUnGusanoJuntoAUnaManzana()){
+        LaManzanaSePudre(Rojo, Verde, Negro);
+    }
+}
+procedure LaManzanaSePudre(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar){
+    /*
+        Proposito: Pudrir una manzana si hay un gusano en la misma celda que la manzana.
+        Precondicion: 
+                      * idem (PudirManzana())
+        Parametros: 
+                    .primerColorAReemplazar - primero color a reemplazar.
+                    .segundoColorAReemplazar - segundo color a reemplazar.
+                    .colorAAgregar - el color por el cual se deben reemplazar
+    */
+    Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar, colorAAgregar);
+}
+procedure Reemplazar_Y_Por_(primerColorAReemplazar, segundoColorAReemplazar,colorAAgregar){
+    /*
+        Proposito: Reemplazar 2 colores por uno.
+        Precondicion: 
+                      * Debe haber al menos una bolita de color "primerColorAReemplazar" y de color 
+                        "segundoColorAReemplazar".
+        Parametros : idem "LaManzanaSePudre()".
+    */
+    Sacar(primerColorAReemplazar);
+    Sacar(segundoColorAReemplazar);
+    Poner(colorAAgregar);
+}
+function hayUnGusanoJuntoAUnaManzana(){
+    /*
+        Proposito: Devolver si hay una manzana y un gusano en la misma celda
+        Precondicion: ninguna.
+        Devuelve: Verdadero si hay un gusano y una manzana en la celda actual, falso si no los hay.
+    */
+    return (hayBolitas(Rojo) && hayBolitas(Verde))
+}
+
+
+
+
+
