@@ -1,0 +1,31 @@
+program{
+    VaciarFilaDe_(Azul);
+}
+procedure VaciarFilaDe_(color){
+    /*
+        Proposito: Sacar todas las bolitas de color "color" de la fila actual.
+        Precondicion: 
+                      * ninguna.
+        Parametro:  .color - color de las bolitas que vamos a sacar en la fila 
+                     actual.
+        Observacion: el cabezal puede estar en cualquier celda de la fila actual.
+    */
+    IrAlBorde(Oeste);
+    while(puedeMover(Este) && hayBolitas(color)){
+        SacarTodas(color);
+        Mover(Este);
+    }
+    SacarTodas(color);
+}
+procedure SacarTodas(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color".
+        Precondicion: 
+                      * Ninguna
+        Parametros:
+                      .color - Es el color de bolitas que queremos sacar
+    */
+    while(hayBolitas(color)){
+        Sacar(color)
+    }
+}

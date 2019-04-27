@@ -1,0 +1,15 @@
+program{
+    SacarTodas(Azul)
+}
+procedure SacarTodas(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color".
+        Precondicion: 
+                      * Ninguna
+        Parametros:
+                      .color - Es el color de bolitas que queremos sacar
+    */
+    while(hayBolitas(color)){
+        Sacar(color)
+    }
+}
