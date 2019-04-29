@@ -1,0 +1,38 @@
+program{
+    VaciarFilaDe_HaciaEl_(Rojo, Este);
+}
+procedure VaciarFilaDe_HaciaEl_(color, direccion){
+    /*
+        Proposito: Vaciar una fila de Bolitas del color "color", empezando el 
+                   recorrido hacia el opuesto de "direccion".
+        Precondicion:
+                      * Ninguna.
+        Parametro: 
+                   .color - El color de bolitas que seran quitadas durante el 
+                            recorrido.
+                   .direccion - La direccion en la que se movera el cabezal 
+                                durante el recorrido.
+    */
+    IrAlBorde(Oeste);
+    while(quedanCeldas()){
+        SacarTodas_(color);
+        Mover(direccion);
+    } 
+    SacarTodas_(color);
+    IrAlBorde(Oeste);
+}
+function quedanCeldas(){
+    return(puedeMover(Este))
+}
+procedure SacarTodas_(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color".
+        Precondicion: 
+                      * Ninguna
+        Parametros:
+                      .color - Es el color de bolitas que queremos sacar
+    */
+    while(hayBolitas(color)){
+        Sacar(color)
+    }
+}

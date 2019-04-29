@@ -1,0 +1,65 @@
+program{
+    RecorrerTableroDe_(Rojo);
+}
+procedure RecorrerTableroDe_(color){
+    /*
+        Proposito: Recorrer el tablero entero moviendo el cabezal entre las 
+                   celdas del mismo.
+        Precondicion:
+                      * Ninguna.
+    */
+    IrAlBorde(Oeste);
+    IrAlBorde(Sur);
+    while(hayCeldas()){
+        SacarTodas_(color);
+        IrASiguienteCelda();
+    }
+    SacarTodas_(color);
+}
+procedure MoverFila(){
+    /*
+        Proposito: Moverme si se puedetodas las celdas que puedo al Este 
+                   de la celda actual.
+        Precondicion: 
+                      * ninguna.
+    */
+    IrAlBorde(Oeste);
+    while(puedeMover(Este)){
+        Mover(Este);    
+    }
+    IrAlBorde(Oeste);
+}
+procedure IrASiguienteCelda(){
+    /*
+        Proposito: Ir a la siguiente fila del recorrido del tablero.
+        Precondicion:
+                      * Ninguna.
+    */    
+    if(puedeMover(Este)){
+        Mover(Este);
+    }
+    else{
+        IrAlBorde(Oeste);
+        Mover(Norte);
+    }
+} 
+function hayCeldas(){
+    /*..*/
+    return(puedeMover(Norte) || puedeMover(Este))
+}
+procedure SacarTodas_(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color".
+        Precondicion: 
+                      * Ninguna
+        Parametros:
+                      .color - Es el color de bolitas que queremos sacar
+    */
+    while(hayBolitas(color)){
+        Sacar(color)
+    }
+}
+
+
+
+

@@ -1,0 +1,36 @@
+program{
+    EstoyElFinalDeUnRecorrido__(Este, Norte);
+}
+procedure EstoyElFinalDeUnRecorrido__(dirPrincipal, dirSecundaria){
+    /*
+        Proposito : Volver al inicio de un recorrido dado previamente, en las 
+                    direcciones opuestas a "dirPrincipal" y "dirSecundaria".
+        Precondicion: 
+                      * Se debe estar al final de un recorrido.
+        Parametros: 
+                    .dirPrincipal - Direccion principal del recorrido que voy a 
+                                    hacer.
+                    .dirSecundaria - direccion secundaria del recorrido que voy a
+                                     hacer.
+    */
+    while(puedeMover(opuesto (dirPrincipal)) || puedeMover(opuesto (dirSecundaria))){
+        Mover(opuesto(dirPrincipal));
+        Mover(opuesto(dirSecundaria));
+    }
+}
+procedure IrAlInicioDeUnRecorrido__(dirPrincipal, dirSecundaria){
+    /*
+        Proposito: Inicializar un recorrido con la direccion "dirPrincipal" como
+                   la direccion principal y la direccion "dirSecundaria" como la
+                   direccion secundaria del recorrido.
+        Precondicion: 
+                      * ninguna.
+        Parametros: 
+                    .dirPrincipal - Direccion principal del recorrido que voy a 
+                                    hacer.
+                    .dirSecundaria - direccion secundaria del recorrido que voy a
+                                     hacer.
+    */
+    IrAlBorde(opuesto (dirPrincipal));
+    IrAlBorde(opuesto (dirSecundaria));
+}

@@ -1,0 +1,19 @@
+program{
+    IrAlInicioDeUnRecorrido__(Este, Norte);
+}
+procedure IrAlInicioDeUnRecorrido__(dirPrincipal, dirSecundaria){
+    /*
+        Proposito: Inicializar un recorrido con la direccion "dirPrincipal" como
+                   la direccion principal y la direccion "dirSecundaria" como la
+                   direccion secundaria del recorrido.
+        Precondicion: 
+                      * ninguna.
+        Parametros: 
+                    .dirPrincipal - Direccion principal del recorrido que voy a 
+                                    hacer.
+                    .dirSecundaria - direccion secundaria del recorrido que voy a
+                                     hacer.
+    */
+    IrAlBorde(opuesto (dirPrincipal));
+    IrAlBorde(opuesto (dirSecundaria));
+}

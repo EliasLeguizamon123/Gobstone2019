@@ -1,0 +1,71 @@
+program{
+   VaciarTableroDe(Rojo);
+}
+procedure VaciarTableroDe(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color" de cada una de las
+                   celdas del tablero actual.
+        Precondicion: 
+                      * Ninguna.
+        Parametros: 
+                    .color - El color de las bolitas que vamos a sacar del 
+                             tablero actual.
+    */
+    IrAlBorde(Sur);
+    IrAlBorde(Oeste);
+    while(puedeMover(Norte)){
+        VaciarFilaDe_(color);
+        SiguienteFila();
+    }
+    VaciarFilaDe_(color)
+}
+procedure SiguienteFila(){
+    /*
+        Proposito: Ir a la siguiente fila para continuar con el recorrido 
+                   (mover el cabezal una vez al Norte e ir al borde Oeste.)
+        Precondicion:
+                      * Ninguna.
+    */
+    IrAlBorde(Oeste);
+    Mover(Norte);
+}
+
+
+
+
+
+
+
+
+
+
+
+procedure VaciarFilaDe_(color){
+    /*
+        Proposito: Sacar todas las bolitas de color "color" de la fila actual.
+        Precondicion: 
+                      * ninguna.
+        Parametro:  .color - color de las bolitas que vamos a sacar en la fila 
+                     actual.
+        Observacion: el cabezal puede estar en cualquier celda de la fila actual.
+    */
+    IrAlBorde(Oeste);
+    while(puedeMover(Este)){
+        SacarTodas(color);
+        Mover(Este);    
+    }
+    SacarTodas(color);
+}
+procedure SacarTodas(color){
+    /*
+        Proposito: Sacar todas las bolitas del color "color".
+        Precondicion: 
+                      * Ninguna
+        Parametros:
+                      .color - Es el color de bolitas que queremos sacar
+    */
+    while(hayBolitas(color)){
+        Sacar(color)
+    }
+}
+
