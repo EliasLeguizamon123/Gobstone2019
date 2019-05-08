@@ -1,0 +1,175 @@
+program{
+    return(nroColumnas())
+}
+//Ejercicio1
+function hayBolitas_EnElBorde_(color, direccion){
+    /*
+        Proposito: Verificar si hay bolitas de color "color" en el borde del tablero que esté 
+                   ubicado en la direccion "direccion".
+        Precondicion:
+                      * Debe haber al menos una celda en la direccion "direccion".
+        parametros: 
+                    .color - es el color de las bolitas que necesito saber si hay en el borde 
+                             "direccion".
+                    .direccion - es la direccion donde se mueve el cabezal para ver si hay 
+                                 bolitas del color "color".
+        denota : la cantidad de bolitas del color "color" en el borde "direccion".
+    */
+    MeMuevoSiPuedoHacia_(direccion)
+    return (hayBolitas(color))
+    
+}
+procedure MeMuevoSiPuedoHacia_(direccion){
+    /*
+        Proposito: Mover el cabezal en la direccion "direccion" solamente si se puede.
+        Precondicion:
+                      * Ninguna.
+        Parametro: 
+                   .direccion - representa la direccion en la cual yo me voy a mover.
+    */
+        while (puedeMover(direccion)){
+        Mover(direccion)
+    }
+}
+//Ejercicio2
+function tieneBolitas_Al_(color, direccion){
+    /*
+        Proposito: Suponiendo que hay un celda lindante en la direccion "direccion" 
+                   y si la misma tiene bolitas del color "color"
+        Precondidion:
+                      * Hay una celda lindante en la direccion "direccion".
+        Parametros: 
+                    .color - Representa el color de bolitas que debemos buscar en la 
+                             lindante.
+                    .direccion - Representa la direccion en la que debamos mover el 
+                                 cabezal.
+        Devuelve: Si hay una celda lindante en la direccion "direccion" y si la misma 
+                  tiene bolitas del color "color".
+    */
+    Mover(direccion)
+    return(hayBolitas(color))
+}
+//Ejercicio3
+function hayBolitas_Al_(color, dirección){
+    /*
+        Proposito: Ver si hay una celda lindante en la direccion "direccion" y si la 
+                   misma tiene bolitas del color "color".
+        Precondicion: 
+                      * Ninguna.
+        parametros: 
+                    .color - es el color de las bolitas que necesito saber si hay en el 
+                             borde "direccion".
+                    .direccion - es la direccion donde se mueve el cabezal para ver si 
+                                 hay bolitas del color "color".
+        Devuelve: un valor de verdad que es verdadero en caso de que haya una celda 
+                  lindante en la direccion "direccion" y tambien si hay bolitas de color
+                  "color" en la misma.
+    */
+    if(puedeMover(direccion)){
+        Mover(direccion)
+    }
+    return(puedeMover(direccion) && hayBolitas(color))
+}
+//Ejercicio4
+function maximoEntre_Y_(valor1, valor2){
+    /*
+        Proposito: Describe cual de los valores ("valor1" o "valor2") 
+                   es el mas grande.
+        Precondicion: 
+                      * Ninguna.
+                      
+        Parametros:
+            .valor1 - primer numero que va a ser verificado por la funcion.
+            .valor2 - segundo numero que va a ser verificado por la funcion.
+        Devuelve: El número mas grande entre los valores "valor1" y 
+                  "valor2", en caso de que los valores sean iguales la 
+                  funcion devuelve el primer valor (ya que son iguales es
+                  indiferente cual mostrar).
+    */
+    return (choose valor1 when (valor1 > valor2)
+                   valor2 when (valor1 < valor2)
+                   valor1 when (valor1 == valor2)
+            boom ("Los valores son incorrectos") otherwise )
+            
+}
+function minimoEntre_Y_(valor1, valor2){
+    /*
+        Proposito: Describe cual de los valores ("valor1" o "valor2") 
+                   es el mas chico.
+        Precondicion: 
+                      * Ninguna.
+                      
+        Parametros:
+            .valor1 - primer numero que va a ser verificado por la funcion.
+            .valor2 - segundo numero que va a ser verificado por la funcion.
+        Devuelve: El número mas chico entre los valores "valor1" y 
+                  "valor2", en caso de que los valores sean iguales la 
+                  funcion devuelve el primer valor (ya que son iguales es
+                  indiferente cual mostrar).
+    */
+    return(choose valor1 when (valor1 < valor2)
+                  valor2 when (valor2 < valor1)
+                  valor1 when (valor1 == valor2)
+                  boom("Valores incorrectos") otherwise)
+}
+//Ejercicio 5 
+function nroDeBolitas_EnLaFilaActual(color){
+    /*
+        Proposito: Describe cual es la cantidad totalde bolitas del color 
+                   "color" en la fila actual del tablero.
+        Precondicion:
+                      * Ninguna.
+        Parametros:
+                    . color - Representa el color de las bolitas a contar en 
+                              la fila actual.
+        Devuelve: el numero de bolitas del color "color" en la fila actual del
+                  tablero.
+    */
+    cantidadDeBolitasYaVistas := 0
+    IrAlBorde(Oeste)
+    while(puedeMover(Este)){
+        cantidadDeBolitasYaVistas := cantidadDeBolitasYaVistas +
+                                     nroBolitas(color)
+        Mover(Este)
+    }
+    cantidadDeBolitasYaVistas := cantidadDeBolitasYaVistas +
+                                 nroBolitas(color)
+    return(cantidadDeBolitasYaVistas)
+}
+//Ejercicio6
+function nroFilas(){
+    /*
+        Proposito: Describir la cantidad de filas en el tablero actual.
+        Precondicion: 
+                      * Ninguna.
+        Devuelve: el numero de filas existentes en el tablero actual.
+    */
+    filasQueYaVi := 0
+    IrAlBorde(Sur)
+    while(puedeMover(Norte)){
+        filasQueYaVi := filasQueYaVi + 1
+        Mover(Norte)
+    }
+    filasQueYaVi := filasQueYaVi + 1
+    return(filasQueYaVi)
+}
+function nroColumnas(){
+        /*
+        Proposito: Describir la cantidad de columnas en el tablero actual.
+        Precondicion: 
+                      * Ninguna.
+        Devuelve: el numero de columnas existentes en el tablero actual.
+    */
+    columnasQueYaVi := 0
+    IrAlBorde(Oeste)
+    while(puedeMover(Este)){
+        columnasQueYaVi := columnasQueYaVi + 1
+        Mover(Este)
+    }
+    columnasQueYaVi := columnasQueYaVi + 1
+    return(columnasQueYaVi)
+}
+
+
+
+

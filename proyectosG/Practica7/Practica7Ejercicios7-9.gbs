@@ -1,0 +1,88 @@
+program{
+    return(hayBolitasDeColores())
+}
+//Ejercicio7 
+function distanciaAlBorde_(direccion){
+    /*
+        Proposito: Contar cuantas celdas hay entre la celda actual y el borde 
+                   que esta hubicado en la direccion "direccion"
+        Precondicion: ninguna.
+        Parametro: direccion - es una direccion.
+        Devuelve: un número.
+        Observacion:
+                     * Si la celda actual está al borde del tablero la 
+                       distancia es 0.
+                     * El número que devuelve la funcion es positivo.
+    */
+    celdasYaContadas := 0 
+    while(puedeMover(direccion)){
+        Mover(direccion)
+        celdasYaContadas := celdasYaContadas + 1
+    }
+    return(celdasYaContadas)
+}
+//Ejercicio8
+
+function coordenadaX(){
+    /*
+        Proposito: Describir la coordenada de la columna en el cual el 
+                   cablezal se encuentra actualmente.
+        Precondicion: ninguna.
+        Devuelve: un número.
+        Observacion: El numero a devolver debe ser positivo ( > 0 ).
+    */
+    Poner(Rojo)
+    IrAlBorde(Oeste)
+    columnaNro := 0
+    while(not hayBolitas(Rojo)){
+        columnaNro := columnaNro + 1
+        Mover(Este)
+    }
+    columnaNro := columnaNro + 1
+    return(columnaNro)
+}
+function coordenadaY(){
+    /*
+        Proposito: Describir la coordenada de la fila en el cual el 
+                   cablezal se encuentra actualmente.
+        Precondicion: ninguna.
+        Devuelve: un número.
+        Observacion: El numero a devolver debe ser positivo ( > 0 ).
+    */
+    Poner(Rojo)
+    IrAlBorde(Sur)
+    filaNro := 0
+    while(not hayBolitas(Rojo)){
+        filaNro := filaNro + 1
+        Mover(Norte)
+    }
+    filaNro := filaNro + 1 
+    return(filaNro)
+}
+//Ejercicio9
+function nroVacias(){
+    /*
+        Proposito: Describir el numero de celdas vacias en el tablero actual
+        Precondicion: ninguna.
+        Devuelve: un número.
+        Observacion: El numero a devolver debe ser positivo.
+    */
+    nroDeVaciasVistas := 0
+    IrAlBorde(Oeste)
+    IrAlBorde(Sur)
+    while(puedeMover(Este) || puedeMover(Norte)){
+        nroVaciasVistas() := nroVaciasVistas + opuesto(hayBolitasDeColores())
+        Mover(Este)
+    }
+    nroVaciasVistas() := nroVaciasVistas + opuesto(hayBolitasDeColores())
+    return(nroDeVaciasVistas)
+}
+function hayBolitasDeColores(){
+    return(choose 1 when (hayBolitas(Rojo) && hayBolitas(Verde) 
+                          && hayBolitas(Azul) && hayBolitas(Negro))
+                  0 otherwise)
+}
+
+
+
+
