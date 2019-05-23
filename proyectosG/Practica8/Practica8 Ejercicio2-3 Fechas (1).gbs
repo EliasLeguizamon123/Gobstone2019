@@ -1,0 +1,65 @@
+type Mes is variant{
+    /*
+        Proposito: Modelar los meses del año.
+    */
+    case Enero      {}
+    case Febrero    {}
+    case Marzo      {}
+    case Abril      {}
+    case Mayo       {}
+    case Junio      {}
+    case Julio      {}
+    case Agosto     {}
+    case Septiembre {}
+    case Octubre    {}
+    case Noviembre  {}
+    case Diciembre  {}
+}
+type Fecha is record{
+    /*
+        Proposito: modelar las fechas dentro de un mes.
+        Precondicion: 
+                      *Si es el mes Enero, Marzo, Mayo, Julio, Agosto, Octubre, Diciembre.
+                         Tiene 31 días.
+                      *Si el mes es Abril, Junio, Septiembre, Noviembre.
+                         Tiene 30 días.
+                      *Si es el mes Febrero 
+                         Tiene 28 días.
+                      *El año es biciesto si es multiplo 4 y no de 100, pero si de 400.
+                         Tiene 366 días.
+    */
+    field dia // Numero.
+    field mes // Mes
+    field año // Numero.
+}
+program{
+    return(diaDeLaMemoria())
+}
+function diaDeLaMemoria(){
+    /*
+        Proposito: Describe el dia de la memoria.
+        Precondicion: Ninguna.
+        Devuelve: una fecha.
+    */
+    return(Fecha(dia <- 24, 
+                 mes <- Marzo,
+                 año <- 1976
+          ))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
