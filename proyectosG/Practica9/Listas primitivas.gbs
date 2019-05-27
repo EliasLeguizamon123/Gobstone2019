@@ -1,0 +1,6 @@
+
+
+
+            resto(lista) //Da todos los elementos menos el primero
+            esVacia(lista) //Si la lista es vacia
+            primero(lista) // El primer elemento de la lista
