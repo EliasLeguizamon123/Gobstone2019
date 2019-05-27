@@ -1,0 +1,308 @@
+type Mes is variant{
+    /*
+        Proposito: Modelar los meses del año.
+    */
+    case Enero      {}
+    case Febrero    {}
+    case Marzo      {}
+    case Abril      {}
+    case Mayo       {}
+    case Junio      {}
+    case Julio      {}
+    case Agosto     {}
+    case Septiembre {}
+    case Octubre    {}
+    case Noviembre  {}
+    case Diciembre  {}
+}
+type Fecha is record{
+    /*
+        Proposito: modelar las fechas dentro de un mes.
+        Invariante de Representacion: 
+                      *Si es el mes Enero, Marzo, Mayo, Julio, Agosto, Octubre, Diciembre.
+                         Tiene 31 días.
+                      *Si el mes es Abril, Junio, Septiembre, Noviembre.
+                         Tiene 30 días.
+                      *Si es el mes Febrero 
+                         Tiene 28 días.
+                      *El año es biciesto si es multiplo 4 y no de 100, pero si de 400.
+                         Tiene 366 días.
+    */
+    field dia // Numero.
+    field mes // Mes
+    field año // Numero.
+}
+program{
+    return(siguienteFecha(Fecha(dia <- 15, mes <- Diciembre, año <- 2019)))
+}
+// Ejercicio 4
+function siguienteMes_(mes){
+    /*
+        Proposito: Describe el mes siguiente a "mes".
+        Precondicion: Ninguna.
+        Parametro: mes - del tipo mes
+        Devuelve: un mes.
+    */
+    return(matching (mes) select
+           Febrero on Enero
+           Marzo on Febrero
+           Abril on Marzo
+           Mayo on Abril
+           Junio on Mayo
+           Julio on Junio
+           Agosto on Julio
+           Septiembre on Agosto
+           Octubre on Septiembre
+           Noviembre on Octubre
+           Diciembre on Noviembre
+           Enero on Diciembre
+           boom("Esto no deberia pasar") otherwise
+          )
+}
+function siguienteDiaDelMes(dia){
+    /*
+        Proposito: Describir el siguiente "dia" del mes actual.
+        Precondicion: Ninguna.
+        Parametro: dia - del tipo dia.
+        Devuelve: un dia.
+        Observación: el dia debe ser un numero positivo. 
+                     en caso de ser los meses Enero, Marzo, Mayo, Julio, Agosto, Octubre, 
+                     Diciembre. el ultimo dia del mes es 31.
+    */
+    return(choose
+           dia + 1 when(dia /= 31)
+           boom("Es el ultimo dia del mes") otherwise
+          )
+}
+function siguienteFecha(fecha){
+    /*
+        Parametro: fecha - del tipo fecha
+        Debuelve: fecha.
+    */
+    return(Fecha(
+           dia <- diaSiguienteDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha)),
+           mes <- mesSiguienteDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha)),
+           año <- añoSiguienteDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha))
+           ))
+}
+// OBSERVADORAS
+function diaSiguienteDelDia_Mes_Año_(dia, mes, año){
+    /*
+        Proposito: Pasar al siguiente Dia del mes actual.
+        Precondicion: Ninguna.
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: un dia.
+        Observacion: Si es el ultimo dia del mes, pasa a ser primero del mes 
+                     siguiente.
+    */
+    return(choose 
+           1 when (esElUltimoDiaDelMes(dia, mes, año))
+           dia + 1 otherwise)
+}
+function mesSiguienteDelDia_Mes_Año_(dia, mes, año){
+    /*
+        Proposito: Pasar al siguiente mes del año actual en caso de ser el ultimo 
+                   dia del mes.
+        Precondicion:
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: una fecha.
+    */
+    return(choose
+           siguienteMes_(mes) when (esElUltimoDiaDelMes(dia, mes, año))
+           mes otherwise
+          )
+}
+function añoSiguienteDelDia_Mes_Año_(dia, mes, año){
+    /*
+        Proprosito: Pasar al siguiente "año" dependiendo de "dia" y "mes"
+        Precondicion: Ninguna.
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: una fecha.
+        
+    */
+    return(choose
+            año + 1 when (esElUltimoDiaDelMes(dia, mes, año) && mes == Diciembre)
+            año otherwise
+          )
+}
+function esElUltimoDiaDelMes(dia, mes, año){
+    /*
+        Prosito: Describir si el "dia" actual es el ultimo del "mes"
+                 actual, teniendo en cuenta tambien el ultimo dia del 
+                 "año" actual.
+        Precondicion: Ninguna.
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: Un booleano.
+    */
+    return( 
+           esUltimoDiaDelMesDe30(dia, mes) ||
+           esUltimoDiaDelMesDe31(dia, mes) ||
+           esUltimoDiaDelMesDeFebrero(dia, mes, año)
+           )
+}
+function esUltimoDiaDelMesDe30(dia, mes){
+    /*
+        Proposito: Describir si es el ultimo "dia" del "mes".
+        Precondicion: 
+                      * El "mes" actual debe ser de 30 dias.
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+        Devuelve: Un booleano
+        Observacion: los meses que tienen 30 dias son Abril, Junio, 
+                     Septiembre, Noviembre.
+    */
+    return( 
+           dia == 30 &&
+           (
+               mes == Abril      ||
+               mes == Junio      ||
+               mes == Septiembre ||
+               mes == Noviembre 
+               )
+          )
+}
+function esUltimoDiaDelMesDe31(dia, mes){
+    /*
+        Proposito:  Describir si el dia actual es el ultimo de un mes con 30 dias.
+        Precondicion: Ninguna.
+        Parametros: 
+                    dia - del tipo dia.
+                    mes - del tipo mes.
+        Devuelve: Booleano
+        Obervacion: Los meses que tienen 31 dias son Enero, Marzo, 
+                    Mayo , Julio, Agosto, Octubre y Diciembre.
+    */ 
+    return( 
+           dia == 31 &&
+           (
+               mes == Enero      ||
+               mes == Marzo      ||
+               mes == Mayo       ||
+               mes == Julio      ||
+               mes == Agosto     ||
+               mes == Octubre    ||
+               mes == Diciembre 
+            )
+          )
+}
+function esUltimoDiaDelMesDeFebrero(dia, mes, año){
+    /*
+        Proposito: Describir si es el ultimo dia del mes de febrero.
+        Precondicion: Ninguna.
+        Parametros: dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: una fecha.
+        Observacion: Tiene en cuenta tambien los años que son biciestos (osea que
+                     febrero tiene 29 dias no 28.)
+    */
+    return(choose
+           (dia == 29 && mes == Febrero) when (esAñoBiciesto(año))
+           (dia == 28 && mes == Febrero) when (not esAñoBiciesto(año))
+            boom("Esto no deberia pasar") otherwise
+           )
+}
+function esAñoBiciesto(año){
+    /*
+        Proposito: Describir si el año actual es biciesto.
+        Precondicion: Ninguna.
+        Parametro: año - del tipo año
+        Devuelve: Booleano. 
+        Observaciones: un año es biciesto cuando es cada 4 años, no 
+                       cada 100, sin embargo tambien cada 400
+    */
+    return (
+                (año mod 100  /= 0) &&
+                (año mod 4  == 0)    ||
+                (año mod 400 == 0) 
+           )
+}
+
+
+// Ejercicio 4 B
+function previoFecha(fecha){
+    /*
+        Proposito: Describir la "fecha" previa a la actual.
+        Precondicion: Ninguna.
+        Parametro: fecha - del tipo fecha
+        Debuelve: fecha.
+    */
+    return(Fecha(
+           dia <- diaPrevioDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha)),
+           mes <- mesPrevioDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha)),
+           año <- añoPrevioDelDia_Mes_Año_(dia(fecha), mes(fecha), año(fecha))
+           ))
+}
+function diaPrevioDelDia_Mes_Año_(dia, mes, año){
+    /*
+        Proposito: Describir el "dia" previo al anterior, teniendo
+                   en cuenta si es primero, en ese caso devolver
+                   el "mes" anterior.
+        Precondicion: Ninguna.
+        Parametro:  dia - del tipo dia.
+                    mes - del tipo mes.
+                    año - del tipo año.
+        Devuelve: una fecha.
+    */
+    return (choose 
+            dia - 1 when (dia /=1)
+             ultimoDiaDelMesAnterior(dia, mes, año) otherwise 
+           )
+}
+function ultimoDiaDelMesAnterior(dia, mes, año){
+    return(choose
+           31 when (esElMesAnteriorDe31Dias(mes))
+           30 when (esElMesAnteriorDe30Dias(mes))
+           29 when (esElMesAnteriorFebreroBiciesto(mes, año))
+           28 otherwise
+          )
+}
+function esElMesAnteriorDe31Dias(mes){
+//resultado:   booleano  
+    return (mes == Enero      ||
+            mes == Febrero    ||
+            mes == Abril      ||
+            mes == Junio      ||
+            mes == Agosto     ||
+            mes == Septiembre ||
+            mes == Noviembre )
+}
+function esElMesAnteriorDe30Dias(mes){
+    /*...*/
+    return (mes == Mayo    ||
+            mes == Julio   ||
+            mes == Octubre || 
+            mes == Diciembre)
+}
+function esElMesAnteriorFebreroBiciesto(mes, año){
+    /*...*/
+    return (mes == Marzo &&
+            esAñoBiciesto(año))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
