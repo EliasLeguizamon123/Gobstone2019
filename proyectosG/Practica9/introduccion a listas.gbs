@@ -1,0 +1,22 @@
+program {
+    return(esVacía([1, 2, 2, 1231251256]))
+}
+function secuenciaAritmeticaDeNumeros(desde, hasta){
+    listaCreada := []
+    nroActual := desde
+    while (nroActual <= hasta){
+        listaCreada := listaCreada ++ [nroActual]
+        nroActual := nroActual + 1
+    }
+   
+    return(listaCreada)
+}
+
+function enTotal_IgualesA_(cantidad, elemento){
+    listaCreada := []
+    elementoActual := elemento
+    repeat (cantidad){
+        listaCreada := listaCreada ++ [elemento]
+    }
+    return(listaCreada)
+}
