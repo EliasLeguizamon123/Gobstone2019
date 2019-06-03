@@ -1,0 +1,172 @@
+program{
+    return(haySiguienteTramoEn_([Norte, Norte, Este]))
+}
+//-----------------------Ejercicio 1-------------------------------
+function cantidadDeRojasEnLaFilaActual(){
+    /*
+        Proposito: Describir la cantidad de bolitas Rojas que hay en la 
+                   fila actual.
+        Precondicion: Ninguna.
+        Devuelve: Lista de numeros.
+        Observación: Las devolvera dentro de una lista.
+    */
+    bolitasQueYaVi := []
+    IniciarRecorrido(Este)
+    while(puedeMover(Este)){
+        bolitasQueYaVi := bolitasQueYaVi ++ [nroBolitas(Rojo)]
+        Mover(Este)
+    }
+    bolitasQueYaVi := bolitasQueYaVi ++ [nroBolitas(Rojo)]
+    return(bolitasQueYaVi)
+}
+procedure IniciarRecorrido(direccion){
+    /*
+        Proposito: Ir al borde opuesto de la "direccion" a la que se 
+                   precisa iniciar el recorrido.
+        Precondicion: Ninguna.
+        Parametros:  direccion - del tipo direccion.
+    */
+    IrAlBorde(opuesto(direccion))
+}
+//-----------------------Ejercicio 2---------------------------
+function  cantidadDeRojasADistancia2DelBordeOesteDe_(){
+    /*
+        Proposito: Describir la cantidad de bolitas Rojas que hay en 
+                   la celda con distancia 2 del borde Oeste.
+        Precondicion: Ninguna.
+        Devuelve: Lista de numeros.
+    */
+    bolitasRojasEnLaCelda2DelBordeOeste := []
+    IrAlBorde(Oeste)
+    IrALaCeldaDeDistancia2()
+    bolitasRojasEnLaCelda2DelBordeOeste := bolitasRojasEnLaCelda2DelBordeOeste 
+                                           ++ [nroBolitas(Rojo)]
+    return(bolitasRojasEnLaCelda2DelBordeOeste)
+}
+procedure IrALaCeldaDeDistancia2(){
+    /*
+        Proposito: Moverme 2 veces hacia la direccion Este.
+        Precondicion: Debe haber al menos 2 celdas al Este.
+        
+    */
+    repeat(2){
+        Mover(Este)
+    }
+}
+//-----------------------Ejercicio 3A---------------------------
+function las3PrimerasDe_ConLaMismaCantidad(lista){
+    /*
+        Proposito: Describir si las 3 primeras celdas de la "lista" 
+        tienen la misma cantidad de bolitas rojas.
+        Precondicion: La lista deberia tener como minimo 3 elementos.
+        Parametros: lista - del tipo lista.
+        Devuelve: Booleano.
+    */
+    return(primero(lista) == segundo(lista) && tercero(lista) == primero(resto(lista)))
+}
+function segundo(lista){
+    return(primero(resto(lista)))
+}
+function tercero(lista){
+    return(primero(resto(resto(lista))))
+}
+//-----------------------Ejercicio 3B---------------------------
+function las3PrimerasDe_ConDistintasCantidades(lista){
+    /*
+        Proposito: Describir si todos los elementos de la "lista" actual 
+                   son distintos.
+        Precondicion: Ninguna.
+        Parametros: lista - del tipo lista.
+        Devuelve: Booleano.
+    */
+    return(primero(lista) /= segundo(lista) && tercero(lista) /= primero(resto(lista)))
+}
+
+//-----------------------Ejercicio 3C---------------------------
+function hayAlgunaCantidadIgualEnLas3PrimerasDe_(lista){
+    /*
+        Proposito: Describir si hay la misma cantidad de bolitas de 
+                   cualquier color en la celda actual.
+        Precondicion: Ninguna.
+        Parametros: lista- del tipo lista.
+        Devuelve: Booleano.
+    */
+    return(primero(lista) /= segundo(lista) || tercero(lista) /= primero(resto(lista)))
+}
+//-----------------------Ejercicio 4----------------------------
+function direccionesAlBorde(){
+    /*
+        Proposito: Describir en una lista las direcciones a las cuales
+                   no me puedo mover.
+        Precondicion: Ninguna.
+        Devuelve: Lista de direcciones.
+    */
+    direccionesSinAcceso := []
+    direccionActual := Norte
+    while(direccionActual /= Oeste){
+        direccionesSinAcceso := verificarDireccionActual(direccionActual, direccionesSinAcceso)
+        direccionActual := siguiente(direccionActual)
+    }
+    direccionesSinAcceso := verificarDireccionActual(direccionActual, direccionesSinAcceso)
+    return(direccionesSinAcceso)
+}
+function verificarDireccionActual(direccion, listaDeDirecciones){
+    /*
+        Proposito: Describir una "listaDeDirecciones" con "direcciones"
+                   a las cuales no me puedo mover como elementos.
+        Precondicion: Ninguna.
+        Parametros: direccion - del tipo direccion.
+                    listaDeDirecciones - del tipo lista.
+        Devuelve: una lista de direcciones.
+    */
+    acumulador := listaDeDirecciones
+    if(not(puedeMover(direccion))){
+        acumulador := acumulador ++ [direccion]
+    }
+    return(acumulador)
+}
+//-----------------------Ejercicio 5----------------------------
+function esSingular_(lista){
+    /*
+        Proposito: Describir si la "lista" actual tiene un solo 
+                   elemento.
+        Precondicion: Ninguna.
+        Parametros: lista- del tipo lista.
+        Devuelve: Booleano.
+    */
+    return(not (esVacía(lista)) && esVacía(resto(lista)))
+}
+//-----------------------Ejercicio 6----------------------------
+function haySiguienteTramoEn_(ruta){
+    /*
+        Precondicion: Describe si la ruta tiene al menos un tramo 
+                      completo.
+        Precondicion: Ninguna.
+        Parametro: ruta- del tipo lista de direcciones.
+        Devuelve: un Booleano.
+    */
+    return(tramoActual(ruta))
+}
+function tramoActual(ruta){
+    /*.*/
+    comparador := ruta
+    return(primero(ruta) == primero(ruta) && segundo(ruta) == segundo(ruta))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
