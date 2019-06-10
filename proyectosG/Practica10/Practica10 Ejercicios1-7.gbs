@@ -1,0 +1,213 @@
+program{
+    return(longitudDe_([Norte, Sur]))
+}
+---------------------------Ejercicio 1--------------------------------------------------
+procedure PonerColores_EnLaCeldaActual(listaDeColores){
+    /*
+        Proposito: Poner colores en la celda actual, dependiendo de la "listaDeColores" 
+        actual.
+        Precondicion: Ninguna.
+        Parametros: listaDeColores- del tipo lista de colores.
+    */
+    listaARecorrer := listaDeColores
+    while(not esVacía(listaDeColores)){
+        Poner(primero(listaARecorrer))
+        listaARecorrer := resto(listaARecorrer)
+    }
+}
+---------------------------Ejercicio 2--------------------------------------------------
+procedure RecorrerCamino_(listaDeDirecciones){
+    /*
+        Proposito: Mover el cabezal dependiendo de la "listaDeDirecciones" actual.
+        Precondicion: Ninguna.
+        Parametros: listaDeDirecciones- del tipo lista de direcciones.
+    */
+    foreach direccion in listaDeDirecciones{
+        Mover(direccion)
+    }
+}
+---------------------------Ejercicio 3--------------------------------------------------
+function aparicionesDeColor_(color){
+    /*
+        Proposito: Describir en una lista la cantidad de bolitas del color "color" que
+                   van apareciendo en el tablero.
+        Precondicion: Ninguna.
+        Parametros: color- del tipo color.
+        Devuelve: una lista de numeros.
+    */
+    bolitasQueYaVi := []
+    IrAlInicioDeUnRecorrido__(Norte, Este)
+    while (hayCeldas(Norte, Este)){
+        bolitasQueYaVi := bolitasQueYaVi ++ bolitasEnLaCeldaActual(color)
+        PasarASiguienteCelda__(Norte, Este)
+    }
+    return (bolitasQueYaVi ++ bolitasEnLaCeldaActual(color))
+}
+function bolitasEnLaCeldaActual(listaDeColores){
+    /*
+        Proposito: Describir en una "listaDeColores" el numero de bolitas actual.
+        Precondicion: 
+                      *Solo debo tener en cuanta las bolitas de color Rojo.
+        Parametros: listaDeColores- del tipo lista de colores.
+        Devuelve: una lista de colores.
+    */
+        bolitasVistas := []
+        if(hayBolitas(Rojo)){
+            bolitasVistas := bolitasVistas ++ [nroBolitas(Rojo)]
+        }
+        else{
+            bolitasVistas := bolitasVistas ++ [0]
+        }
+        return(bolitasVistas)
+}
+---------------------------Ejercicio 4--------------------------------------------------
+procedure Poner_Bolitas_EnElTablero(listaDeCosas, color){
+    /*
+        Proposito: Poner bolitas de colores dependiendo de la "listaDeCosas".
+        Precondicion: Ninguna.
+        Parametros: listaDeCosas- del tipo lista de colores y numeros.
+        Observaciones: Dentro de la lista, el ultimo elemento es un color que describe
+                       el color de bolitas a poner a lo largo del tablero.
+    */
+    listaDeBolitasAPoner := listaDeCosas
+    IrAlInicioDeUnRecorrido__(Norte, Oeste)
+    while(not estoyElFinalDeUnRecorrido__(Norte, Oeste) && 
+          not esVacía(listaDeBolitasAPoner)){
+            Poner__Veces(color, primero(listaDeBolitasAPoner))
+            PasarASiguienteCelda__(Norte, Oeste)
+            listaDeBolitasAPoner := resto(listaDeBolitasAPoner)
+    }
+}
+---------------------------Ejercicio 5-------------------------------------------------
+function coloresEnLaCeldaActual(){
+    /*
+        Proposito: Describir la cantidad de bolitas dentro de una lista de todos los 
+                   colores que hay en la celda actual.
+        Precondicion: Ninguna.
+        Parametros:
+        Devuelve: una lista de numeros.
+    */
+    listaActual := []
+    foreach color in [minColor() .. maxColor()]{
+        listaActual := listaActual ++ [nroBolitas(color)]
+    }
+    return(listaActual)
+}
+---------------------------Ejercicio 6------------------------------------------------
+function aparicionesDelColor_EnElCamino_(color, listaDeDirecciones){
+    /*
+        Proposito: Describir si en el camino dado por la "listaDeDirecciones" la 
+                   cantidad de bolitas del "color" dado.
+        Precondicion: Ninguna.
+        Parametros: color -del tipo color.
+                    listaDeDirecciones -del tipo lista de colores.
+        Devuelve: una lista de numeros.
+    */
+    bolitasQueYaVi := []
+    foreach direccion in listaDeDirecciones{
+        bolitasQueYaVi := bolitasQueYaVi ++ [nroBolitas(color)]
+        Mover(direccion)
+    }
+    return(bolitasQueYaVi ++ [nroBolitas(color)])
+}
+---------------------------Ejercicio 7------------------------------------------------
+function longitudDe_(listaDeCosas){
+    /*
+        Proposito: Describir una listaDeNumeros dependiendo de la cantidad de elementos
+            dados por una "listaDeCosas"
+        Precondicion: Ninguna.
+        Parametros: listaDeCosas -del tipo lista de cosas.
+        Devuelve: una lista de numeros.
+    */
+    listaARevisar := listaDeCosas
+    listaAcumuladora := []
+    elementoAcumulador := 0
+    while(not esVacía(listaARevisar)){
+        listaARevisar := resto(listaARevisar)
+        listaAcumuladora := listaAcumuladora ++ [elementoAcumulador + 1 ]
+    }
+    return(listaAcumuladora)
+}
+
+
+
+
+
+
+
+    /*
+        Proposito:
+        Precondicion:
+        Parametros:
+        Devuelve
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------Auxiliares------------------------------------------
+procedure PasarASiguienteCelda__(dir1, dir2){
+    /*
+        Proposito: Ir a la siguiente fila del recorrido del tablero.
+        Precondicion: Ninguna.
+    */    
+    if(puedeMover(dir1)){
+        Mover(dir1);
+    }
+    else{
+        IrAlBorde(opuesto(dir1));
+        Mover(dir2);
+    }
+} 
+function hayCeldas(dir1, dir2){
+    /*
+        Proposito: Describir si quedan celdas libres en el tablero actual.
+        Precondicion: Ninguna.
+        Devuelve: Un booleano.
+    */
+    return(puedeMover(dir1) || puedeMover(dir2))
+}
+procedure IrAlInicioDeUnRecorrido__(dir1, dir2){
+    /*.*/
+    IrAlBorde(opuesto(dir1))
+    IrAlBorde(opuesto(dir2))
+}
+function estoyElFinalDeUnRecorrido__(dir1, dir2){
+    /*..*/
+    return(not puedeMover(dir1) && not puedeMover(dir2))
+}
+procedure Poner__Veces(color, numero){
+    /*.*/
+    repeat(numero){
+        Poner(color)
+    }
+}
+function celdaVacia(){
+    /*.*/
+    return(hayBolitas(Rojo) && hayBolitas(Negro) && 
+           hayBolitas(Verde) && hayBolitas(Azul))
+}
+
+
+
+
+
+
+
+
+
+
