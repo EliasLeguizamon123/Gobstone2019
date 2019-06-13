@@ -1,0 +1,267 @@
+program{
+    return(cantPokemonesVivos(equipoPokemon1()))
+}
+type TipoDePokemon is variant{
+  case Tierra{}  
+  case Agua  {}  
+  case Fuego {}  
+}
+
+type Pokemon is record{
+field tipo // TipoDePokeon
+field fuerza // nro >=0
+field estaVivo// Booleano True esta Vivo, False esta Muerto, si esta muerto ademas fuerza es 0.
+field nivel //nro >=0
+}
+
+function pokemon1(){
+    return(Pokemon(tipo <- Tierra, fuerza <- 8, estaVivo <- False, nivel <- 2))
+}
+function pokemon2(){
+    return(Pokemon(tipo <- Agua, fuerza <- 10, estaVivo <- True, nivel <- 3))
+}
+function pokemon3(){
+    return(Pokemon(tipo <- Fuego, fuerza <- 22, estaVivo <- True, nivel <- 5))
+}
+function equipoPokemon1(){
+    return([pokemon1(), pokemon2(), pokemon3()])
+}
+
+function esMasFuerte(pokemón1,pokemón2){
+//Describe un True si el pokemón1 tiene mas fuerza que el pokemón2
+//Precondición: Ninguna
+    return(choose 
+           pokemón1 when (fuerza(pokemón1) > fuerza(pokemón2))
+           pokemón2 when (fuerza(pokemón2) >= fuerza(pokemón1))
+           boom("No comparaste la fuerza de los pokemones.") otherwise
+          )
+}
+
+function esMayorNivel(pokemón1,pokemón2){
+//Describe un True si el pokemón1 tiene un nivel mas alto que el pokemón2
+//Precondición: Ninguna
+    return(nivel(pokemón1) > nivel(pokemón2))
+}
+function potenciarPokemon(pokemón, n){
+//Describe un nuevo pokemón  con la fuerza y el nivel del pokemón recibido multiplicado por n.
+//Precondición: Ninguna
+    return(Pokemon(pokemón | fuerza <- fuerza(pokemón) * n, nivel <- nivel(pokemón) * n))
+}
+function duplicarValoresAPokemon(pokemón){
+//Describe un nuevo  pokemón con el doble de fuerza y nivel del pokemón recibido
+//Precondición: Ninguna
+    return(Pokemon(pokemón | fuerza <- fuerza(pokemón) * 2, nivel <- nivel(pokemón) * 2))
+}
+function potenciarPokemonSiEsDeTipo(pokemón, n, tipo){
+//Describe un nuevo  pokemón potenciado en n solo si es del tipo recibido
+//Precondición: Ninguna
+    return(choose 
+            potenciarPokemon(pokemón, n) when (tipo(pokemón) == tipo)
+            boom("No es del mismo tipo.") otherwise 
+          )
+}
+function destruirPokemon(pokemon){
+//Describe un nuevo  pokemón similar al recibido como parametro  pero con  fuerza=0 y con estado Muerto
+//Precondición: Ninguna
+    return(Pokemon(pokemon | fuerza <- 0, estaVivo <- False))
+}
+--------------------------------------------------- 
+//Parte 2
+//Ejercicios con Listas
+
+function entrenarPokemones(listaDePokemones, n){
+//Describe la lista de todos los pokemones potenciados en n 
+//Precondición: Ninguna
+    listaDePokemonesYaPotenciados := []
+    foreach pokemon in listaDePokemones{
+        listaDePokemonesYaPotenciados := listaDePokemonesYaPotenciados ++ [potenciarPokemon(pokemon, n)]
+    }
+    return(listaDePokemonesYaPotenciados)
+}
+function pokemonesDelTipo(listaDePokemones, c){
+//Describe la lista de todos los pokemones que son  del tipo c
+//Precondición: Ninguna
+    listaDelTipoC := []
+    foreach pokemon in listaDePokemones{
+        listaDelTipoC := listaDelTipoC ++ singularSi(pokemon, tipo(pokemon) == c)
+    }
+    return(listaDelTipoC)
+}
+function elMasFuerte(listaDePokemones){
+//Describe el pokemon de nivel mas alto de toda la lista
+//Si hay dos iguales da lo mismo cual devuelve
+//Precondicion: listaDePokemones tiene al menos 1 pokemón
+    elPokemonMasFuerte := primero(listaDePokemones)
+    foreach pokemon in resto(listaDePokemones){
+        elPokemonMasFuerte := esMasFuerte(elPokemonMasFuerte, pokemon)
+    }
+    return(elPokemonMasFuerte)
+}
+function duplicarValorAlTipo(listaDePokemones, tipo){
+//Describe  una nueva lista de pokemones con aquellos pokemones que son del tipo tipo duplicados y los de cualquier  otro tipos excatamente igual a como se recibieron
+//Notar que si listaDePokemones tiene 10 pokemones , la lista resultante tambien tendrá 10 pokemones
+//Precondición: Ninguna
+    listaNuevaDePokemones := []
+    foreach pokemon in listaDePokemones{
+        listaNuevaDePokemones := listaNuevaDePokemones ++ duplicarPokemonSiEsDelTipo_(pokemon, tipo)
+    }
+    return(listaNuevaDePokemones)
+}
+function elMasDebil(listaDePokemones){
+//Descibe al pokemon de nivel mas bajo de toda la lista
+//Si hay dos iguales da lo mismo cual devuelve
+//Precondicion: listaDePokemones tiene al menos 1 pokemón
+    elPokemonMasDevil := primero(listaDePokemones)
+    foreach pokemon in resto(listaDePokemones){
+        elPokemonMasDevil := esMasDevil(elPokemonMasDevil, pokemon)
+    }
+    return(elPokemonMasDevil)
+}
+function pokemonesMuertos(listaDePokemones){
+//Describe  la lista de los pokemones muertos de la lista
+//Precondición: Ninguna
+    pokemonesMuertos := []
+    foreach pokemon in listaDePokemones{
+        pokemonesMuertos := pokemonesMuertos ++ singularSi(pokemon, not estaVivo(pokemon))
+    }
+    return(pokemonesMuertos)
+}
+function cantPokemonesVivos(listaPokemones){
+//Describe la cantidad de pokemones vivos de la lista recibida
+//Precondición: Ninguna
+    listaDePokemonesVivos := listaPokemones
+    pokemonesVivosQueYaVi := 0
+    
+    return(pokemonesVivosQueYaVi)
+}
+function existePokemonConFuerza_tipo_YNivel(listaPokemones,fuerza, tipo, nivel){
+//Describe si  si en la lista existe algun pokemon de ese tipo con esa fuerza y ese nivel
+//Precondición: Ninguna
+    return()
+}/*
+----------------------------------------------------------------------------------------------------------
+//Parte 3
+//Ejercicios con Registros y Listas
+
+
+
+type Entrenador is record{
+    field lista            // [Pokemon]  
+    field identificador    // Numero  >0
+    field esTactico        // Booleano 
+}
+
+
+function entrenador(identificador, esBueno) 
+//Describe un Entrenador con el identificador recibido, y esTactico solo si el booleano recibido en el segundo parametro, notar que por defecto el entrenador no tiene pokemones para entrenar
+//Precondición: Ninguna
+
+function agregarPokemonAEntrenador(pokemón, entrenador); 
+//Describe un nuevo entrenador similar al recibido, pero que ahora tiene al pokemón  en su lista de pokemones 
+//Es decir que agrega al pokemon a la lista pokemones del entrenador
+//Precondición: Ninguna
+
+function cantidadPokemones(entrenador)
+//Describe la cantidad de pokemones del entrenador recibido.(Notar que la funcion devuelve un Numero)
+//Precondición: Ninguna
+
+function cantidadPokemonesTotales(listaDeEntrenadores)
+//Describe la cantidad de pokemones de todos los entrenadores recibidos.(Notar que la funcion devuelve un Numero)
+//Precondición: Ninguna
+
+function mayorAntiguedad(entrenador1, entrenador2)
+//Describe al entrenador que tiene menor numero de identificacion (no hay 2 entrenadores con el mismo numero).
+//Precondición: Ninguna
+
+function elMasAntiguo(listaDeEntrenadores);
+//Describe al entrenador Mas viejo de la lista que recibe como parametro.(La lista no esta vacia)
+//Precondición: la listaDeEntrenadores debe contener al menos 1 entrenador
+
+function desafio(entrenador1, entrenador2)*/
+/*Describe al Entrenador ganador del desafio.
+El desafio consiste en que compitan  1 pokemon de cada entrenador hasta que se acaben los pokemones, y lo hacen el primero con el primero, el segundo con el segundo.. y asi siguiendo...hasta que no haya mas pokemones. 
+Se puede asumir que la lista de pokemones de ambos entrenadores tiene la misma longitud.
+En cada pelea entre dos pokemones siepre  gana el pokemon MAS FUERTE.(si son iguales ningun entrenador gana puntos)
+De haber empate en la cantidad de peleas ganadas, se devuelve el entrenador de mayor antiguedad.
+*/
+//Precondición: Ninguna
+
+//function desafioDeEntrenadores(listaDeEntrenadores)
+/*Describe al Entrenador ganador del desafio entre todos los entrenadores.
+Primero se compiten el  primer entrenador con el segundo, el que gana juega con el tercero, el que gana con el cuarto...
+Es decir el ganador QUEDA EN CHANCHA... jugando con el proximo.
+*/
+//Precondición: La listaDeEntrenadores tiene al menos 2 entrenadores
+
+
+/*function  fuerzaTotalEntrenador( entrenador)
+//Describe un número que es la suma de la fuerza de todos los pokemones del entrenador recibido como parametro
+//Precondición: Ninguna
+
+
+function    fuerzaTotalEnBatalla (listaDeEntrenadores)
+//Describe un número  que es la suma de la fuerza de todos los pokemones de TODOS los entrenadores recibidos
+//Precondición: Ninguna
+
+
+function mejorPokemonParaJugada( entrenador)*/
+/* Si el entrenador esTáctico describe al Pokemon de mayor nivel con sus valores  duplicados 
+ Si el entrenador No es táctico describe  al primer Pokemon de su lista de pokemnoes
+ Precondición: el entrenador  tiene al menos 1 pokemón
+*/
+
+
+//function desafioInteligenteMejorDeNJugadas(entrenador1, entrenador2, n)
+/*Describe al Entrenador ganador del desafio INTELIGENTE entre entrenador 1 y entrenador 2 .
+A diferencia del dasafio comun, este desafio es solo EN N jugadas.
+Si el entrenador es bueno siempre jugara el pokemon MAS FUERTE dupliacado... sino el entrenador  hora articipar uno a uno los pokemones de su lista ( igual que en el desafio original)
+Notar que no juegan TODOS los pokemones de la lista de los entrenadores recibidos SINO que solo se disputaran N desafios...
+Si hay empate gana el de mayor antiguedad
+Asumir que los entrenadores tienen mas de n pokemones entrenados.
+Precondición: Ambos entrenadores tienen al menos 1 pokemón
+*/
+
+
+//function desafioInteligenteMejorDeNJugadas(listaDeEntrenadores,  n)
+/*Describe al Entrenador ganador del desafio INTELIGENTE entre todos los entrenadores recibidos por parámetro.
+Primero se desafian inteligentemente el  primero y el segundo, el que gana juega con el tercero, el que gana con el cuarto...
+Es decir el ganador QUEDA EN CHANCHA... jugando con el proximo.
+Asumir que todos los entrenadores tienen mas de N pokemones entrenados.
+Precondicion: la listaDeEntrenadores tiene al menos 2 entrenadores, cada entrenador de la lista tiene al menos 1 pokemón
+*/
+
+
+
+
+
+
+
+
+---------------------------Auxiliares---------------------------------------------------------------------
+function duplicarPokemonSiEsDelTipo_(pokemon, c){
+    return(choose
+           [duplicarValoresAPokemon(pokemon)] when (tipo(pokemon) == c)
+           [pokemon] otherwise
+          )
+}
+function esMasDevil(pokemón1,pokemón2){
+//Describe un True si el pokemón1 tiene menos fuerza que el pokemón2
+//Precondición: Ninguna
+    return(choose 
+           pokemón2 when (fuerza(pokemón1) > fuerza(pokemón2))
+           pokemón1 when (fuerza(pokemón2) >= fuerza(pokemón1))
+           boom("No comparaste la fuerza de los pokemones.") otherwise
+          )
+}
+function singularSi(elem, bool) {
+    return(choose
+           [elem] when (bool)
+           [] otherwise
+          )
+}
+
+
+
+
+
+
